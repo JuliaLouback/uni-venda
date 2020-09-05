@@ -1,0 +1,7 @@
+.menu-bar .label {
+    -fx-font-size: 14pt;
+}
+
+.menu-bar .label {
+   -fx-text-fill: #DC3545;
+}
