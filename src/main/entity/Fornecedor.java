@@ -12,6 +12,9 @@ public class Fornecedor {
 	
 	private long Inscricao_municipal;
 	
+	private long Id_endereco;
+	
+	
 	public String getNome_empresa() {
 		return Nome_empresa;
 	}
@@ -43,6 +46,13 @@ public class Fornecedor {
 		Inscricao_municipal = inscricao_municipal;
 	}
 	
+	public long getId_endereco() {
+		return Id_endereco;
+	}
+	public void setId_endereco(long id_endereco) {
+		Id_endereco = id_endereco;
+	}
+	
 	public Fornecedor(String nome_empresa, String email, String cnpj, long inscricao_estadual,
 			long inscricao_municipal) {
 		super();
@@ -51,6 +61,16 @@ public class Fornecedor {
 		Cnpj = cnpj;
 		Inscricao_estadual = inscricao_estadual;
 		Inscricao_municipal = inscricao_municipal;
+	}
+	
+	public Fornecedor () {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "Fornecedor [Nome_empresa=" + Nome_empresa + ", Email=" + Email + ", Cnpj=" + Cnpj
+				+ ", Inscricao_estadual=" + Inscricao_estadual + ", Inscricao_municipal=" + Inscricao_municipal + "]";
 	}
 	
 }

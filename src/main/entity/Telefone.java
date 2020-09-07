@@ -28,5 +28,8 @@ public class Telefone {
 		Telefones = telefones;
 	}
 	
+	public Telefone() {
+	}
+	
 	
 }

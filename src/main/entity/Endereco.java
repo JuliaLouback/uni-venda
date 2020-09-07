@@ -15,8 +15,6 @@ public class Endereco {
 	private String Cidade;
 	
 	private String Estado;
-
-	
 	
 	public int getId_endereco() {
 		return Id_endereco;
@@ -111,6 +109,17 @@ public class Endereco {
 		Bairro = bairro;
 		Cidade = cidade;
 		Estado = estado;
+	}
+
+	public Endereco() {
+		
+	}
+
+
+	@Override
+	public String toString() {
+		return "Endereco [Id_endereco=" + Id_endereco + ", Cep=" + Cep + ", Numero=" + Numero + ", Rua=" + Rua
+				+ ", Bairro=" + Bairro + ", Cidade=" + Cidade + ", Estado=" + Estado + "]";
 	}
 	
 	

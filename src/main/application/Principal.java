@@ -6,7 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Principal extends Application {
+public class Principal extends Application
+{
 
 
 	@Override
@@ -23,8 +24,6 @@ public class Principal extends Application {
 	}
 
 	public static void main(String[] args) {
-
 		launch(args);
-
 	}
 }

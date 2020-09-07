@@ -96,7 +96,7 @@
       <TextField fx:id="Bairro" layoutX="40.0" layoutY="550.0" prefHeight="30.0" prefWidth="260.0" />
       <TextField fx:id="Cidade" layoutX="321.0" layoutY="550.0" prefHeight="30.0" prefWidth="260.0" />
       <TextField fx:id="Estado" layoutX="598.0" layoutY="550.0" prefHeight="30.0" prefWidth="260.0" />
-      <Button fx:id="btnAdd" layoutX="580.0" layoutY="612.0" mnemonicParsing="false" onAction="#mostrarTela" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Adicionar" textFill="WHITE">
+      <Button fx:id="btnAdd" layoutX="580.0" layoutY="612.0" mnemonicParsing="false" onAction="#addFornecedor" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Adicionar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
