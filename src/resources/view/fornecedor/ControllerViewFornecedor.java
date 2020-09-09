@@ -1,9 +1,15 @@
 package resources.view.fornecedor;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import main.dao.DaoEndereco;
 import main.dao.DaoFornecedor;
 import main.dao.DaoFornecedorTelefone;
@@ -60,6 +66,8 @@ public class ControllerViewFornecedor {
     @FXML
     private Button btnBack;
 
+    private Fornecedor forn = new Fornecedor();
+    
     @FXML
     void addFornecedor(ActionEvent event) {
     	
@@ -115,5 +123,29 @@ public class ControllerViewFornecedor {
     	
     	
     }
+
+	public void start(Stage primaryStage) {
+		try {
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/fornecedor/CadastroFornecedor.fxml"));
+			Scene scene = new Scene(pane);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
+			forn = (Fornecedor) primaryStage.getUserData();
+			primaryStage.show();
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	 @FXML
+	 void BackButton(ActionEvent event) {
+		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+		 t.start(stage);
+	 }
+	 
 
 }

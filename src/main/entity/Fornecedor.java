@@ -54,23 +54,25 @@ public class Fornecedor {
 	}
 	
 	public Fornecedor(String nome_empresa, String email, String cnpj, long inscricao_estadual,
-			long inscricao_municipal) {
+			long inscricao_municipal, int id_endereco) {
 		super();
 		Nome_empresa = nome_empresa;
 		Email = email;
 		Cnpj = cnpj;
 		Inscricao_estadual = inscricao_estadual;
 		Inscricao_municipal = inscricao_municipal;
+		Id_endereco = id_endereco;
 	}
 	
 	public Fornecedor () {
 		
 	}
-	
 	@Override
 	public String toString() {
 		return "Fornecedor [Nome_empresa=" + Nome_empresa + ", Email=" + Email + ", Cnpj=" + Cnpj
-				+ ", Inscricao_estadual=" + Inscricao_estadual + ", Inscricao_municipal=" + Inscricao_municipal + "]";
+				+ ", Inscricao_estadual=" + Inscricao_estadual + ", Inscricao_municipal=" + Inscricao_municipal
+				+ ", Id_endereco=" + Id_endereco + "]";
 	}
+	
 	
 }

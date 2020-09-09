@@ -101,7 +101,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnBack" layoutX="729.0" layoutY="612.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
+      <Button fx:id="btnBack" layoutX="729.0" layoutY="612.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
