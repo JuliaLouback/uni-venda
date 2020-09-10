@@ -1,15 +1,27 @@
 package resources.view.fornecedor;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.dao.DaoEndereco;
@@ -21,7 +33,7 @@ import main.entity.Fornecedor;
 import main.entity.FornecedorTelefone;
 import main.entity.Telefone;
 
-public class ControllerViewFornecedor {
+public class ControllerViewFornecedor implements Initializable{
 
     @FXML
     private TextField Cnpj;
@@ -292,5 +304,55 @@ public class ControllerViewFornecedor {
     		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
     	}
 	 }
+	 
+    public void buscarCep(String cep) {
 	
+	 String json;        
+
+        try {
+            URL url = new URL("http://viacep.com.br/ws/"+ Cep.getText() +"/json");
+            
+            URLConnection urlConnection = url.openConnection();
+            
+            InputStream is = urlConnection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+
+            StringBuilder jsonSb = new StringBuilder();
+
+            br.lines().forEach(l -> jsonSb.append(l.trim()));
+         
+            json = jsonSb.toString();
+            
+            json = json.replaceAll("[{},:]", "");
+            json = json.replaceAll("\"", "\n");                       
+            String array[] = new String[30];
+            array = json.split("\n");
+          
+            String logradouro = array[7];            
+            String bairro = array[15];
+            String cidade = array[19]; 
+            String uf = array[23];
+            
+            Rua.setText(logradouro);
+            Bairro.setText(bairro);
+            Cidade.setText(cidade);
+            Estado.setText(uf);
+          
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		Cep.focusedProperty().addListener(new ChangeListener<Boolean>() {
+		    @Override
+		    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+		        if(!newValue) {
+		            buscarCep(Cep.getText());
+		        }
+		    }
+		});
+		
+	}
 }
