@@ -2,7 +2,7 @@ package main.entity;
 
 public class Endereco {
 
-	private int Id_endereco;
+	private long Id_endereco;
 	
 	private String Cep;
 	
@@ -16,13 +16,13 @@ public class Endereco {
 	
 	private String Estado;
 	
-	public int getId_endereco() {
+	public long getId_endereco() {
 		return Id_endereco;
 	}
 
 
 
-	public void setId_endereco(int id_endereco) {
+	public void setId_endereco(long id_endereco) {
 		Id_endereco = id_endereco;
 	}
 

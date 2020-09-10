@@ -5,6 +5,8 @@ public class Telefone {
 	private int Id_telefone;
 	
 	private long Telefones;
+	
+	private String Tipo;
 
 	public int getId_telefone() {
 		return Id_telefone;
@@ -20,6 +22,14 @@ public class Telefone {
 
 	public void setTelefones(long telefones) {
 		Telefones = telefones;
+	}
+
+	public String getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(String tipo) {
+		Tipo = tipo;
 	}
 
 	public Telefone(int id_telefone, long telefones) {

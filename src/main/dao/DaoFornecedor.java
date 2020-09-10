@@ -16,6 +16,11 @@ public class DaoFornecedor {
 	
 	private final String SQL_SELECIONA_FORNECEDOR = "SELECT * FROM Fornecedor";
 	
+	private final String SQL_ALTERA_FORNECEDOR = "UPDATE Fornecedor SET Nome_empresa=?, Email = ?, Inscricao_estadual = ?, Inscricao_municipal = ?"
+			+ "  WHERE Cnpj = ?;";
+	
+	private final String SQL_EXCLUI_FORNECEDOR = "DELETE FROM Fornecedor  WHERE Cnpj = ?;";
+		
 	private PreparedStatement pst = null;
 
 	public void inserirFornecedor(Fornecedor fornecedor) {
@@ -58,4 +63,31 @@ public class DaoFornecedor {
 
 		return listaFornecedores;
 	}
+	
+	public void alterarFornecedor(Fornecedor fornecedor) {
+		
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_FORNECEDOR);) {
+			pst.setString(1, fornecedor.getNome_empresa());
+			pst.setString(2, fornecedor.getEmail());
+			pst.setLong(3, fornecedor.getInscricao_estadual());
+			pst.setLong(4, fornecedor.getInscricao_municipal());
+			pst.setString(5, fornecedor.getCnpj());
+			pst.execute();
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statment " + e.toString());
+		}
+		
+	}
+	
+   public void excluirFornecedor(String cnpj) {
+		
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_FORNECEDOR);) {
+			pst.setString(1, cnpj);
+			pst.execute();
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statment " + e.toString());
+		}
+		
+	}
+
 }

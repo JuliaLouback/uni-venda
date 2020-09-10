@@ -10,8 +10,6 @@ public class CNXJDBC {
 		try {
 			
 			//Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-			
-			System.out.println("Conexão obtida com sucesso!");
 			return DriverManager.getConnection(connectionUrl,"sa", "juliaerikajulio");
 			
 			

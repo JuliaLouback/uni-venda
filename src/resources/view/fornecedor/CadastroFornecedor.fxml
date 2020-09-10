@@ -116,7 +116,7 @@
             <Insets />
          </opaqueInsets>
       </MenuBar>
-      <Label layoutX="40.0" layoutY="116.0" text="Adicionar">
+      <Label fx:id="labelChange" layoutX="40.0" layoutY="116.0" text="Adicionar">
          <font>
             <Font name="Arial" size="31.0" />
          </font>

@@ -27,10 +27,5 @@ public class Principal extends Application
 	public static void main(String[] args) {
 		launch(args);
 		
-		/*ArrayList<Fornecedor> listUsuarios = new DaoFornecedor().listarFornecedores();
-		for(Fornecedor umUsuario : listUsuarios)
-			System.out.println(umUsuario.toString());*/
-		
-		
 	}
 }
