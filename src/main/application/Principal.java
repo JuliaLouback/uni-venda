@@ -7,17 +7,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-public class Principal extends Application
-{
-
+public class Principal extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/fornecedor/ListaFornecedor.fxml"));
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/painel/Painel.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Lista Fornecedores - Uni Venda");
+			primaryStage.setTitle("Painel - Uni Venda");
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();	
@@ -26,6 +24,5 @@ public class Principal extends Application
 
 	public static void main(String[] args) {
 		launch(args);
-		
 	}
 }

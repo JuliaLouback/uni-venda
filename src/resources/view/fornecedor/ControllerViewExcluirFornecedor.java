@@ -80,6 +80,10 @@ public class ControllerViewExcluirFornecedor {
     	
        	new DaoFornecedor().excluirFornecedor(fornecedores.getCnpj());
     	new DaoEndereco().excluirEndereco(fornecedores.getId_endereco());
+    	
+    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+		 t.start(stage);
  
     }
 

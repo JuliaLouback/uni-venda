@@ -139,7 +139,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="Bairro" layoutX="680.0" layoutY="390.0" text="Email:">
+      <Label fx:id="Bairro" layoutX="675.0" layoutY="390.0" text="Email:">
          <font>
             <Font size="25.0" />
          </font>

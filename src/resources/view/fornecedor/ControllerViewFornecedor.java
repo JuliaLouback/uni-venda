@@ -86,6 +86,10 @@ public class ControllerViewFornecedor {
     	} else {
     		adicionar();
     	}
+    	
+	   	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+		 t.start(stage);
     }
 
 	public void start(Stage primaryStage) {
@@ -107,6 +111,7 @@ public class ControllerViewFornecedor {
 		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
 	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
 		 t.start(stage);
+		 
 	 }
 	 
 	 public void setLabelText(Fornecedor fornecedor){

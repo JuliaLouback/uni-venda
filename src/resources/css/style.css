@@ -5,3 +5,36 @@
 .menu-bar .label {
    -fx-text-fill: #DC3545;
 }
+
+.table-view{
+	-fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 1;
+}
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #DC3545; 
+    -fx-opacity: 0.9;
+}
+.table-view .column-header .label{
+   -fx-text-fill: white;
+   -fx-font-weight: bold; 
+   -fx-alignment: CENTER_LEFT;
+   -fx-font-size: 13pt;
+   -fx-padding: 5px;
+}
+.table-view .cell{
+   -fx-cell-size: 45;
+  -fx-alignment: center-left;
+  -fx-text-fill: black;
+  -fx-alignment: CENTER_LEFT;
+  -fx-font-size: 13pt;
+  -fx-padding: 5px;
+   
+}
+
+
+
+
+
+

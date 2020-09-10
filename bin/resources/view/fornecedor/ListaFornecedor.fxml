@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,17 +13,19 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.fornecedor.ControllerViewListaFornecedor">
    <children>
-      <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="463.0" prefWidth="921.0" style="-fx-border: none;">
+      <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="463.0" prefWidth="921.0" style="-fx-border: none;" stylesheets="@../../css/style.css">
         <columns>
-          <TableColumn fx:id="Nome_empresa" minWidth="0.0" prefWidth="269.0666160583496" text="Empresa" />
-            <TableColumn fx:id="Cnpj" prefWidth="179.99996948242188" text="Cnpj" />
-            <TableColumn fx:id="Email" prefWidth="235.73336791992188" text="Email" />
+          <TableColumn fx:id="Nome_empresa" minWidth="200.0" prefWidth="380.0" text="Empresa" />
+            <TableColumn fx:id="Cnpj" minWidth="100.0" prefWidth="180.0" text="Cnpj" />
+            <TableColumn fx:id="Email" minWidth="150.0" prefWidth="280.0" text="Email" />
         </columns>
       </TableView>
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
         <menus>
-          <Menu mnemonicParsing="false" text="Uni Venda" />
-          <Menu mnemonicParsing="false" text="Inicial" />
+          <Menu mnemonicParsing="false" text="Uni Venda">
+               <items>
+                  <MenuItem fx:id="btnUni" mnemonicParsing="false" onAction="#btnVoltar" text="Inicial" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="Sair" />
         </menus>
       </MenuBar>

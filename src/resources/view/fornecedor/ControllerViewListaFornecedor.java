@@ -13,9 +13,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,6 +31,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.dao.DaoFornecedor;
 import main.entity.Fornecedor;
+import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewListaFornecedor implements Initializable{
 
@@ -40,10 +47,8 @@ public class ControllerViewListaFornecedor implements Initializable{
     @FXML
     private TableColumn<Fornecedor, String> Email;
 
-
     @FXML
     private Button btnAdd;
-
    
 	ArrayList<Fornecedor> listas = new DaoFornecedor().listarFornecedores();
 
@@ -57,6 +62,7 @@ public class ControllerViewListaFornecedor implements Initializable{
 		Email.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("Email"));
 		
 	    tabela.setItems(lista);
+	    tabela.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	    addButtonToTable();
 	    addButtonExcluir();
 		
@@ -116,9 +122,10 @@ public class ControllerViewListaFornecedor implements Initializable{
                             }
                             
                         });
-                        
-                        btn.setMinWidth(100);
-                        btn.setStyle("-fx-background-color: #e0e0e0; "); 
+                       
+                        btn.setPrefWidth(280);
+                        btn.setStyle("-fx-background-color: #28A745;-fx-text-fill:#ffffff; "); 
+                       
                     }
 
                     @Override
@@ -131,11 +138,14 @@ public class ControllerViewListaFornecedor implements Initializable{
                         }
                     }
                 };
+              
                 return cell;
             }
         };
 
         colBtn.setCellFactory(cellFactory);
+
+        colBtn.setMinWidth(100);
 
         tabela.getColumns().add(colBtn);
 
@@ -173,9 +183,9 @@ public class ControllerViewListaFornecedor implements Initializable{
                             }
                             
                         });
-                        
-                        btn.setMinWidth(100);
-                        btn.setStyle("-fx-background-color: #e0e0e0; "); 
+                       
+                        btn.setPrefWidth(280);
+                        btn.setStyle("-fx-background-color:#e04b59;-fx-text-fill:#ffffff;"); 
                     }
 
                     @Override
@@ -193,6 +203,7 @@ public class ControllerViewListaFornecedor implements Initializable{
         };
 
         colBtn.setCellFactory(cellFactory);
+        colBtn.setMinWidth(90);
 
         tabela.getColumns().add(colBtn);
 
