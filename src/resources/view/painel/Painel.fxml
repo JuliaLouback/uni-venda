@@ -15,12 +15,12 @@
    <children>
       <Pane layoutX="40.0" layoutY="180.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="131.0" fitWidth="140.0" layoutX="32.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/delivery.png" />
+                  <Image url="@../../img/cart.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnFornecedor" layoutX="25.0" layoutY="165.0" mnemonicParsing="false" onAction="#btnIrFornecedor" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedores" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Vendas" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
@@ -42,9 +42,9 @@
       <Separator layoutX="40.0" layoutY="116.0" prefHeight="29.0" prefWidth="953.0" />
       <Pane layoutX="283.0" layoutY="180.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="131.0" fitWidth="140.0" layoutX="32.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/delivery.png" />
+                  <Image url="@../../img/people.png" />
                </image>
             </ImageView>
             <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Clientes" textFill="#dc3545">
@@ -56,23 +56,9 @@
       </Pane>
       <Pane layoutX="769.0" layoutY="180.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="115.0" fitWidth="130.0" layoutX="40.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/delivery.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Produtos" textFill="#dc3545">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane layoutX="525.0" layoutY="180.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../img/delivery.png" />
+                  <Image url="@../../img/worker.png" />
                </image>
             </ImageView>
             <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Funcionários" textFill="#dc3545">
@@ -82,28 +68,42 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="40.0" layoutY="452.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
+      <Pane layoutX="525.0" layoutY="180.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="120.0" fitWidth="129.0" layoutX="40.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/delivery.png" />
+                  <Image url="@../../img/box.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Produtos" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="283.0" layoutY="452.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
+      <Pane layoutX="40.0" layoutY="452.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnFornecedor" layoutX="25.0" layoutY="165.0" mnemonicParsing="false" onAction="#btnIrFornecedor" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedores" textFill="#dc3545">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="131.0" fitWidth="140.0" layoutX="32.0" layoutY="16.0" onMouseClicked="#btnIrFornecedor" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/delivery.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+         </children>
+      </Pane>
+      <Pane layoutX="283.0" layoutY="452.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
+         <children>
+            <ImageView fitHeight="131.0" fitWidth="140.0" layoutX="32.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/grid.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Categorias" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
@@ -112,12 +112,12 @@
       </Pane>
       <Pane layoutX="769.0" layoutY="452.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="119.0" fitWidth="140.0" layoutX="37.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/delivery.png" />
+                  <Image url="@../../img/time.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Caixas" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
@@ -126,12 +126,12 @@
       </Pane>
       <Pane layoutX="525.0" layoutY="452.0" prefHeight="230.0" prefWidth="200.0" style="-fx-border-color: #DC3545;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="115.0" fitWidth="115.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/delivery.png" />
+                  <Image url="@../../img/money.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Pagamentos" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
