@@ -1,13 +1,12 @@
 package resources.view.fornecedor;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -21,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.dao.DaoEndereco;
@@ -32,6 +30,7 @@ import main.entity.Endereco;
 import main.entity.Fornecedor;
 import main.entity.FornecedorTelefone;
 import main.entity.Telefone;
+import main.util.MaskFieldUtil;
 
 public class ControllerViewFornecedor implements Initializable{
 
@@ -160,9 +159,9 @@ public class ControllerViewFornecedor implements Initializable{
 	     if(listaTelefone.size() >= 1) {
 		     for(Telefone telefone:listaTelefone) {
 		    	 if(telefone.getTipo().equals("Fixo")) {
-		    		 Telefone_fixo.setText(Long.toString(telefone.getTelefones()));
+		    		 Telefone_fixo.setText(telefone.getTelefones());
 		    	 } else {
-		    		 Telefone_celular.setText(Long.toString(telefone.getTelefones()));
+		    		 Telefone_celular.setText(telefone.getTelefones());
 		    	 }
 		     }
 	     }
@@ -195,7 +194,7 @@ public class ControllerViewFornecedor implements Initializable{
     	if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
     		Telefone telefoneFixo = new Telefone();
     		
-    		telefoneFixo.setTelefones(Long.parseLong(Telefone_fixo.getText()));
+    		telefoneFixo.setTelefones(Telefone_fixo.getText());
     		telefoneFixo.setTipo("Fixo");
     		
     		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
@@ -210,7 +209,7 @@ public class ControllerViewFornecedor implements Initializable{
     	if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
     		Telefone telefoneCelular = new Telefone();
     		
-    		telefoneCelular.setTelefones(Long.parseLong(Telefone_celular.getText()));
+    		telefoneCelular.setTelefones(Telefone_celular.getText());
     		telefoneCelular.setTipo("Celular");
     		
     		long ids = new DaoTelefone().inserirTelefone(telefoneCelular);
@@ -253,7 +252,7 @@ public class ControllerViewFornecedor implements Initializable{
     			if(action.getTipo().equals("Fixo")) {
 	    			Telefone telefoneFixo = new Telefone();
 	        		
-	        		telefoneFixo.setTelefones(Long.parseLong(Telefone_fixo.getText()));
+	        		telefoneFixo.setTelefones(Telefone_fixo.getText());
 	        		telefoneFixo.setId_telefone(action.getId_telefone());
 	        		
 	        		new DaoTelefone().alterarTelefone(telefoneFixo);
@@ -263,7 +262,7 @@ public class ControllerViewFornecedor implements Initializable{
     	} else if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
     		Telefone telefoneFixo = new Telefone();
     		
-    		telefoneFixo.setTelefones(Long.parseLong(Telefone_fixo.getText()));
+    		telefoneFixo.setTelefones(Telefone_fixo.getText());
     		telefoneFixo.setTipo("Fixo");
     		
     		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
@@ -282,7 +281,7 @@ public class ControllerViewFornecedor implements Initializable{
     			if(action.getTipo().equals("Celular")) {
 	    			Telefone telefoneCelular = new Telefone();
 	        		
-	    			telefoneCelular.setTelefones(Long.parseLong(Telefone_celular.getText()));
+	    			telefoneCelular.setTelefones(Telefone_celular.getText());
 	    			telefoneCelular.setId_telefone(action.getId_telefone());
 	    			
 	    			new DaoTelefone().alterarTelefone(telefoneCelular);
@@ -292,7 +291,7 @@ public class ControllerViewFornecedor implements Initializable{
     	} else if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
     		Telefone telefoneFixo = new Telefone();
     		
-    		telefoneFixo.setTelefones(Long.parseLong(Telefone_celular.getText()));
+    		telefoneFixo.setTelefones(Telefone_celular.getText());
     		telefoneFixo.setTipo("Celular");
     		
     		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
@@ -310,7 +309,7 @@ public class ControllerViewFornecedor implements Initializable{
 	 String json;        
 
         try {
-            URL url = new URL("http://viacep.com.br/ws/"+ Cep.getText() +"/json");
+            URL url = new URL("http://viacep.com.br/ws/"+ Cep.getText().replace("-", "") +"/json");
             
             URLConnection urlConnection = url.openConnection();
             
@@ -352,7 +351,11 @@ public class ControllerViewFornecedor implements Initializable{
 		            buscarCep(Cep.getText());
 		        }
 		    }
-		});
+		});	
 		
+		MaskFieldUtil.foneField(this.Telefone_fixo);
+		MaskFieldUtil.foneField(this.Telefone_celular);
+        MaskFieldUtil.cepField(this.Cep);
+        MaskFieldUtil.cpfCnpjField(this.Cnpj);
 	}
 }

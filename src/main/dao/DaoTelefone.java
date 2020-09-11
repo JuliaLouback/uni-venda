@@ -25,7 +25,7 @@ public class DaoTelefone {
 	public long inserirTelefone(Telefone telefone) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_TELEFONE,Statement.RETURN_GENERATED_KEYS);) {
-			pst.setString(1, Long.toString(telefone.getTelefones()));
+			pst.setString(1, telefone.getTelefones());
 			pst.setString(2, telefone.getTipo());
 			pst.executeUpdate();
 			
@@ -56,7 +56,7 @@ public class DaoTelefone {
 			
 			while (rs.next()) {
 				telefone.setId_telefone((rs.getInt("ID_TELEFONE")));
-				telefone.setTelefones((rs.getLong("TELEFONES")));
+				telefone.setTelefones((rs.getString("TELEFONES")));
 				telefone.setTipo(rs.getString("TIPO"));
 			}
 
@@ -81,7 +81,7 @@ public class DaoTelefone {
     public void alterarTelefone(Telefone telefone) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_TELEFONE);) {
-			pst.setLong(1, telefone.getTelefones());
+			pst.setString(1, telefone.getTelefones());
 			pst.setLong(2, telefone.getId_telefone());
 			pst.execute();
 		} catch (SQLException e) {

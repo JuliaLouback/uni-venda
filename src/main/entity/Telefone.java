@@ -4,7 +4,7 @@ public class Telefone {
 	
 	private int Id_telefone;
 	
-	private long Telefones;
+	private String Telefones;
 	
 	private String Tipo;
 
@@ -16,11 +16,11 @@ public class Telefone {
 		Id_telefone = id_telefone;
 	}
 
-	public long getTelefones() {
+	public String getTelefones() {
 		return Telefones;
 	}
 
-	public void setTelefones(long telefones) {
+	public void setTelefones(String telefones) {
 		Telefones = telefones;
 	}
 
@@ -32,7 +32,7 @@ public class Telefone {
 		Tipo = tipo;
 	}
 
-	public Telefone(int id_telefone, long telefones) {
+	public Telefone(int id_telefone, String telefones) {
 		super();
 		Id_telefone = id_telefone;
 		Telefones = telefones;

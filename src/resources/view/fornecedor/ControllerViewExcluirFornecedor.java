@@ -111,10 +111,10 @@ public class ControllerViewExcluirFornecedor {
 	    	  Telefone telefone =  new Telefone();
 	    	  telefone = new DaoTelefone().listarTelefone(action);
 	    	  if(telefone.getTipo().equals("Fixo")) {
-	    		  Telefone_fixo.setText(Long.toString(telefone.getTelefones()));
+	    		  Telefone_fixo.setText(telefone.getTelefones());
 	    		
 	    	  } else {
-	    		  Telefone_celular.setText(Long.toString(telefone.getTelefones()));
+	    		  Telefone_celular.setText(telefone.getTelefones());
 	    	  }
 	     });
 	     

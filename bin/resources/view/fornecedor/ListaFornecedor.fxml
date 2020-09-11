@@ -14,8 +14,8 @@
    <children>
       <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="463.0" prefWidth="921.0" style="-fx-border: none;" stylesheets="@../../css/style.css">
         <columns>
-          <TableColumn fx:id="Nome_empresa" minWidth="200.0" prefWidth="380.0" text="Empresa" />
-            <TableColumn fx:id="Cnpj" minWidth="100.0" prefWidth="180.0" text="Cnpj" />
+          <TableColumn fx:id="Nome_empresa" minWidth="180.0" prefWidth="301.59998321533203" text="Empresa" />
+            <TableColumn fx:id="Cnpj" minWidth="120.0" prefWidth="258.3999938964844" text="Cnpj" />
             <TableColumn fx:id="Email" minWidth="150.0" prefWidth="280.0" text="Email" />
         </columns>
       </TableView>

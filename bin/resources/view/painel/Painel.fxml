@@ -20,7 +20,7 @@
                   <Image url="@../../img/delivery.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnFornecedor" layoutX="25.0" layoutY="165.0" mnemonicParsing="false" onAction="#btnIrFornecedor" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button fx:id="btnFornecedor" layoutX="25.0" layoutY="165.0" mnemonicParsing="false" onAction="#btnIrFornecedor" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedores" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Image url="@../../img/delivery.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Clientes" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Image url="@../../img/delivery.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Produtos" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Image url="@../../img/delivery.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Fornecedor" textFill="#dc3545">
+            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Funcionários" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>
