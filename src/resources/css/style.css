@@ -6,6 +6,17 @@
    -fx-text-fill: #DC3545;
 }
 
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing, .label {
+    -fx-background: #c7c7c7 ;
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-padding: 4px;
+    -fx-text-fill: black;
+    -fx-background: #bababa;
+}
+
 .table-view{
 	-fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1;

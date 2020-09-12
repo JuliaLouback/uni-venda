@@ -15,6 +15,7 @@ import main.entity.Endereco;
 import main.entity.Fornecedor;
 import main.entity.Telefone;
 import main.util.ShowAlert;
+import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewExcluirFornecedor {
 
@@ -122,4 +123,11 @@ public class ControllerViewExcluirFornecedor {
 	     });
 	     
 	  }
+    
+    @FXML
+	 void VoltarPainel(ActionEvent event) {
+		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	     ControllerViewPainel t = new ControllerViewPainel();
+		 t.start(stage);
+	 }
 }

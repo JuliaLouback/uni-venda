@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -21,8 +22,10 @@
       </TableView>
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
         <menus>
-          <Menu mnemonicParsing="false" text="Uni Venda" />
-            <Menu mnemonicParsing="false" text="Inicial" />
+          <Menu mnemonicParsing="false" text="Uni Venda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#VoltarPainel" text="Inicial" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="Sair" />
         </menus>
       </MenuBar>

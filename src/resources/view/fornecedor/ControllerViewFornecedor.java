@@ -38,6 +38,7 @@ import main.entity.FornecedorTelefone;
 import main.entity.Telefone;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
+import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewFornecedor implements Initializable{
 
@@ -395,4 +396,11 @@ public class ControllerViewFornecedor implements Initializable{
 		
 		return true;
 	}
+	
+	 @FXML
+	 void VoltarPainel(ActionEvent event) {
+		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	     ControllerViewPainel t = new ControllerViewPainel();
+		 t.start(stage);
+	 }
 }

@@ -208,6 +208,13 @@ public class ControllerViewListaFornecedor implements Initializable{
         tabela.getColumns().add(colBtn);
 
     }
+	
+	 @FXML
+	 void VoltarPainel(ActionEvent event) {
+		 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+	     ControllerViewPainel t = new ControllerViewPainel();
+		 t.start(stage);
+	 }
 
 }
 
