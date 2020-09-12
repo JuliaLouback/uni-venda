@@ -121,5 +121,60 @@
             <Font name="Arial" size="31.0" />
          </font>
       </Label>
+      <Label layoutX="120.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="518.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="270.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="482.0" layoutY="270.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="772.0" layoutY="270.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="430.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="330.0" layoutY="430.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="496.0" layoutY="430.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="98.0" layoutY="510.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="510.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="663.0" layoutY="510.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

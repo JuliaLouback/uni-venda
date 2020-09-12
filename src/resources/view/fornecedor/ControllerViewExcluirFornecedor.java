@@ -14,6 +14,7 @@ import main.dao.DaoTelefone;
 import main.entity.Endereco;
 import main.entity.Fornecedor;
 import main.entity.Telefone;
+import main.util.ShowAlert;
 
 public class ControllerViewExcluirFornecedor {
 
@@ -81,9 +82,11 @@ public class ControllerViewExcluirFornecedor {
        	new DaoFornecedor().excluirFornecedor(fornecedores.getCnpj());
     	new DaoEndereco().excluirEndereco(fornecedores.getId_endereco());
     	
-    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
-		 t.start(stage);
+    	new ShowAlert().sucessoAlert("Fornecedor excluido com sucesso!");
+    	
+		Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+		t.start(stage);
  
     }
 

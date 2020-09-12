@@ -10,6 +10,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.Validator;
+
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -17,6 +21,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,6 +37,7 @@ import main.entity.Fornecedor;
 import main.entity.FornecedorTelefone;
 import main.entity.Telefone;
 import main.util.MaskFieldUtil;
+import main.util.ShowAlert;
 
 public class ControllerViewFornecedor implements Initializable{
 
@@ -98,9 +105,6 @@ public class ControllerViewFornecedor implements Initializable{
     		adicionar();
     	}
     	
-	   	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
-		 t.start(stage);
     }
 
 	public void start(Stage primaryStage) {
@@ -129,7 +133,7 @@ public class ControllerViewFornecedor implements Initializable{
 		 this.fornecedores = fornecedor;
 		 this.labelChange.setText("Editar"); 
 		 this.btnAdd.setText("Editar");
-		 this.Cnpj.setDisable(true);
+		 this.Cnpj.setEditable(false);
 	     this.Nome_empresa.setText(fornecedor.getNome_empresa());
 	     this.Email.setText(fornecedor.getEmail());
 	     this.Inscricao_estadual.setText(String.valueOf(fornecedor.getInscricao_estadual()));
@@ -143,7 +147,7 @@ public class ControllerViewFornecedor implements Initializable{
 	     this.Numero.setText(String.valueOf(endereco.getNumero()));
 	     this.Rua.setText(endereco.getRua());
 	     this.Bairro.setText(endereco.getBairro());
-	     this.Cidade.setText(endereco.getEstado());
+	     this.Cidade.setText(endereco.getCidade());
 	     this.Estado.setText(endereco.getEstado());
 	     
 	     ArrayList<Long> lista = new DaoFornecedorTelefone().listarFornecedorTelefone(fornecedor.getCnpj());
@@ -168,140 +172,157 @@ public class ControllerViewFornecedor implements Initializable{
 	  }
 	 
 	 public void adicionar() {
-		 
-		Endereco endereco = new Endereco();
-    	
-    	endereco.setCep(Cep.getText());
-    	endereco.setNumero(Integer.valueOf(Numero.getText()));
-    	endereco.setRua(Rua.getText());
-    	endereco.setBairro(Bairro.getText());
-    	endereco.setCidade(Cidade.getText());
-    	endereco.setEstado(Estado.getText());
+	 
+		if(validacaoCampos()) {
+			Endereco endereco = new Endereco();
 	    	
-    	long id = new DaoEndereco().inserirEndereco(endereco);
-    	
-    	Fornecedor fornecedor = new Fornecedor();
-    	
-    	fornecedor.setNome_empresa(Nome_empresa.getText());
-    	fornecedor.setCnpj(Cnpj.getText());
-    	fornecedor.setEmail(Email.getText());
-    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
-    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
-    	fornecedor.setId_endereco(id);
-    	
-    	new DaoFornecedor().inserirFornecedor(fornecedor);
-    	
-    	if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
-    		Telefone telefoneFixo = new Telefone();
-    		
-    		telefoneFixo.setTelefones(Telefone_fixo.getText());
-    		telefoneFixo.setTipo("Fixo");
-    		
-    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
-    		
-    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-    		fornecedorTelefone.setCnpj(Cnpj.getText());
-    		fornecedorTelefone.setId_telefone(ids);
-    		
-    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
-    	}
-    	
-    	if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
-    		Telefone telefoneCelular = new Telefone();
-    		
-    		telefoneCelular.setTelefones(Telefone_celular.getText());
-    		telefoneCelular.setTipo("Celular");
-    		
-    		long ids = new DaoTelefone().inserirTelefone(telefoneCelular);
-    		
-    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-    		fornecedorTelefone.setCnpj(Cnpj.getText());
-    		fornecedorTelefone.setId_telefone(ids);
-    		
-    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
-    	}
+	    	endereco.setCep(Cep.getText());
+	    	endereco.setNumero(Integer.valueOf(Numero.getText()));
+	    	endereco.setRua(Rua.getText());
+	    	endereco.setBairro(Bairro.getText());
+	    	endereco.setCidade(Cidade.getText());
+	    	endereco.setEstado(Estado.getText());
+		    	
+	    	long id = new DaoEndereco().inserirEndereco(endereco);
+	    	
+	    	Fornecedor fornecedor = new Fornecedor();
+	    	
+	    	fornecedor.setNome_empresa(Nome_empresa.getText());
+	    	fornecedor.setCnpj(Cnpj.getText());
+	    	fornecedor.setEmail(Email.getText());
+	    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
+	    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
+	    	fornecedor.setId_endereco(id);
+	    	
+	    	new DaoFornecedor().inserirFornecedor(fornecedor);
+	    	
+	    	if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
+	    		Telefone telefoneFixo = new Telefone();
+	    		
+	    		telefoneFixo.setTelefones(Telefone_fixo.getText());
+	    		telefoneFixo.setTipo("Fixo");
+	    		
+	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
+	    		
+	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+	    		fornecedorTelefone.setCnpj(Cnpj.getText());
+	    		fornecedorTelefone.setId_telefone(ids);
+	    		
+	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    	}
+	    	
+	    	if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
+	    		Telefone telefoneCelular = new Telefone();
+	    		
+	    		telefoneCelular.setTelefones(Telefone_celular.getText());
+	    		telefoneCelular.setTipo("Celular");
+	    		
+	    		long ids = new DaoTelefone().inserirTelefone(telefoneCelular);
+	    		
+	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+	    		fornecedorTelefone.setCnpj(Cnpj.getText());
+	    		fornecedorTelefone.setId_telefone(ids);
+	    		
+	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    	}
+	    	
+	    	new ShowAlert().sucessoAlert("Fornecedor adicionado com sucesso!"); 
+	    	
+	    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+			 t.start(stage);
+		}
+	
 	 }
 	 
 	 
 	 private void editar() {
-		Fornecedor fornecedor = new Fornecedor();
+		if(validacaoCampos()) {
+			Fornecedor fornecedor = new Fornecedor();
+		    	
+	    	fornecedor.setNome_empresa(Nome_empresa.getText());
+	    	fornecedor.setCnpj(Cnpj.getText());
+	    	fornecedor.setEmail(Email.getText());
+	    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
+	    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
 	    	
-    	fornecedor.setNome_empresa(Nome_empresa.getText());
-    	fornecedor.setCnpj(Cnpj.getText());
-    	fornecedor.setEmail(Email.getText());
-    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
-    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
-    	
-    	new DaoFornecedor().alterarFornecedor(fornecedor);
-    	
-        Endereco endereco = new Endereco();
-    	
-    	endereco.setCep(Cep.getText());
-    	endereco.setNumero(Integer.valueOf(Numero.getText()));
-    	endereco.setRua(Rua.getText());
-    	endereco.setBairro(Bairro.getText());
-    	endereco.setCidade(Cidade.getText());
-    	endereco.setEstado(Estado.getText());
-    	endereco.setId_endereco(fornecedores.getId_endereco());
+	    	new DaoFornecedor().alterarFornecedor(fornecedor);
 	    	
-    	new DaoEndereco().alterarEndereco(endereco);
-    	
-    	if(listaTelefoneTipo.contains("Fixo")) {
-    		listaTelefone.forEach(action -> {
-    			
-    			if(action.getTipo().equals("Fixo")) {
-	    			Telefone telefoneFixo = new Telefone();
-	        		
-	        		telefoneFixo.setTelefones(Telefone_fixo.getText());
-	        		telefoneFixo.setId_telefone(action.getId_telefone());
-	        		
-	        		new DaoTelefone().alterarTelefone(telefoneFixo);
-    			}
-    		});
-    		
-    	} else if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
-    		Telefone telefoneFixo = new Telefone();
-    		
-    		telefoneFixo.setTelefones(Telefone_fixo.getText());
-    		telefoneFixo.setTipo("Fixo");
-    		
-    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
-    		
-    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-    		fornecedorTelefone.setCnpj(Cnpj.getText());
-    		fornecedorTelefone.setId_telefone(ids);
-    		
-    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
-    	}
-    	
-	    if(listaTelefoneTipo.contains("Celular")) {
-    		
-    		listaTelefone.forEach(action -> {
-    			
-    			if(action.getTipo().equals("Celular")) {
-	    			Telefone telefoneCelular = new Telefone();
-	        		
-	    			telefoneCelular.setTelefones(Telefone_celular.getText());
-	    			telefoneCelular.setId_telefone(action.getId_telefone());
+	        Endereco endereco = new Endereco();
+	    	
+	    	endereco.setCep(Cep.getText());
+	    	endereco.setNumero(Integer.valueOf(Numero.getText()));
+	    	endereco.setRua(Rua.getText());
+	    	endereco.setBairro(Bairro.getText());
+	    	endereco.setCidade(Cidade.getText());
+	    	endereco.setEstado(Estado.getText());
+	    	endereco.setId_endereco(fornecedores.getId_endereco());
+		    	
+	    	new DaoEndereco().alterarEndereco(endereco);
+	    	
+	    	if(listaTelefoneTipo.contains("Fixo")) {
+	    		listaTelefone.forEach(action -> {
 	    			
-	    			new DaoTelefone().alterarTelefone(telefoneCelular);
-    			}
-    		});
-    		
-    	} else if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
-    		Telefone telefoneFixo = new Telefone();
-    		
-    		telefoneFixo.setTelefones(Telefone_celular.getText());
-    		telefoneFixo.setTipo("Celular");
-    		
-    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
-    		
-    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-    		fornecedorTelefone.setCnpj(Cnpj.getText());
-    		fornecedorTelefone.setId_telefone(ids);
-    		
-    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
-    	}
+	    			if(action.getTipo().equals("Fixo")) {
+		    			Telefone telefoneFixo = new Telefone();
+		        		
+		        		telefoneFixo.setTelefones(Telefone_fixo.getText());
+		        		telefoneFixo.setId_telefone(action.getId_telefone());
+		        		
+		        		new DaoTelefone().alterarTelefone(telefoneFixo);
+	    			}
+	    		});
+	    		
+	    	} else if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
+	    		Telefone telefoneFixo = new Telefone();
+	    		
+	    		telefoneFixo.setTelefones(Telefone_fixo.getText());
+	    		telefoneFixo.setTipo("Fixo");
+	    		
+	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
+	    		
+	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+	    		fornecedorTelefone.setCnpj(Cnpj.getText());
+	    		fornecedorTelefone.setId_telefone(ids);
+	    		
+	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    	}
+	    	
+		    if(listaTelefoneTipo.contains("Celular")) {
+	    		
+	    		listaTelefone.forEach(action -> {
+	    			
+	    			if(action.getTipo().equals("Celular")) {
+		    			Telefone telefoneCelular = new Telefone();
+		        		
+		    			telefoneCelular.setTelefones(Telefone_celular.getText());
+		    			telefoneCelular.setId_telefone(action.getId_telefone());
+		    			
+		    			new DaoTelefone().alterarTelefone(telefoneCelular);
+	    			}
+	    		});
+	    		
+	    	} else if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
+	    		Telefone telefoneFixo = new Telefone();
+	    		
+	    		telefoneFixo.setTelefones(Telefone_celular.getText());
+	    		telefoneFixo.setTipo("Celular");
+	    		
+	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
+	    		
+	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+	    		fornecedorTelefone.setCnpj(Cnpj.getText());
+	    		fornecedorTelefone.setId_telefone(ids);
+	    		
+	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    	}
+		    
+		    if(new ShowAlert().sucessoAlert("Fornecedor editado com sucesso!")) {
+			    Stage stage = (Stage) btnBack.getScene().getWindow(); 
+			    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+				t.start(stage);
+		    }
+		}
 	 }
 	 
     public void buscarCep(String cep) {
@@ -336,7 +357,7 @@ public class ControllerViewFornecedor implements Initializable{
             Bairro.setText(bairro);
             Cidade.setText(cidade);
             Estado.setText(uf);
-          
+           
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -348,7 +369,9 @@ public class ControllerViewFornecedor implements Initializable{
 		    @Override
 		    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 		        if(!newValue) {
-		            buscarCep(Cep.getText());
+		        	if(Cep.getText().length() > 8) {
+		        		buscarCep(Cep.getText());
+		        	}
 		        }
 		    }
 		});	
@@ -357,5 +380,19 @@ public class ControllerViewFornecedor implements Initializable{
 		MaskFieldUtil.foneField(this.Telefone_celular);
         MaskFieldUtil.cepField(this.Cep);
         MaskFieldUtil.cpfCnpjField(this.Cnpj);
+	}
+	
+	public boolean validacaoCampos() {
+		if(Cnpj.getText().isEmpty() | Nome_empresa.getText().isEmpty() | Email.getText().isEmpty() | Inscricao_estadual.getText().isEmpty() |
+		   Inscricao_municipal.getText().isEmpty() | Cep.getText().isEmpty() | Numero.getText().isEmpty() |
+		   Rua.getText().isEmpty() | Bairro.getText().isEmpty() | Cidade.getText().isEmpty() |
+		   Estado.getText().isEmpty()) {
+			
+			new ShowAlert().validacaoAlert();
+			
+			return false;
+		}
+		
+		return true;
 	}
 }
