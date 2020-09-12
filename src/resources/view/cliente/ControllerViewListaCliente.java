@@ -1,11 +1,9 @@
-package resources.view.fornecedor;
+package resources.view.cliente;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import com.sun.javafx.fxml.LoadListener;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,15 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,90 +21,76 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import main.dao.DaoFornecedor;
+import main.dao.DaoCliente;
+import main.entity.Cliente;
 import main.entity.Fornecedor;
+import resources.view.fornecedor.ControllerViewExcluirFornecedor;
+import resources.view.fornecedor.ControllerViewFornecedor;
 import resources.view.painel.ControllerViewPainel;
 
-public class ControllerViewListaFornecedor implements Initializable{
-
-    @FXML
-    private TableView<Fornecedor> tabela;
-
-    @FXML
-    private TableColumn<Fornecedor, String> Nome_empresa;
-
-    @FXML
-    private TableColumn<Fornecedor, String> Cnpj;
-
-    @FXML
-    private TableColumn<Fornecedor, String> Email;
+public class ControllerViewListaCliente implements Initializable {
 
     @FXML
     private Button btnAdd;
-   
-	ArrayList<Fornecedor> listas = new DaoFornecedor().listarFornecedores();
 
-    ObservableList<Fornecedor> lista = FXCollections.observableArrayList(listas);
-    		
+    @FXML
+    private TableView<Cliente> tabela;
+
+    @FXML
+    private TableColumn<Cliente, String> Nome;
+
+    @FXML
+    private TableColumn<Cliente, String> Cpf;
+
+    @FXML
+    private TableColumn<Cliente, String> Email;
+    
+    ArrayList<Cliente> listas = new DaoCliente().listarCliente();
+
+    ObservableList<Cliente> lista = FXCollections.observableArrayList(listas);
+
+    @FXML
+    void AddCliente(ActionEvent event) {
+    	 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+	     ControllerViewCliente t = new ControllerViewCliente();
+		 t.start(stage);
+    }
+
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		Nome_empresa.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("Nome_empresa"));
-		Cnpj.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("Cnpj"));
-		Email.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("Email"));
+	public void initialize(URL location, ResourceBundle resources) {
+		Nome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
+		Cpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));
+		Email.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
 		
 	    tabela.setItems(lista);
 	    tabela.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	    addButtonToTable();
 	    addButtonExcluir();
-		
 	}
-	
-	 @FXML
-	 void AddFornecedor(ActionEvent event) {
-		 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	     ControllerViewFornecedor t = new ControllerViewFornecedor();
-		 t.start(stage);
-	 }
 
-	public void start(Stage primaryStage) {
-		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/fornecedor/ListaFornecedor.fxml"));
-			Scene scene = new Scene(pane);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Lista Fornecedores - Uni Venda");
-			primaryStage.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
 	private void addButtonToTable() {
-        TableColumn<Fornecedor, Void> colBtn = new TableColumn("Editar");
+        TableColumn<Cliente, Void> colBtn = new TableColumn("Editar");
 
-        Callback<TableColumn<Fornecedor, Void>, TableCell<Fornecedor, Void>> cellFactory = new Callback<TableColumn<Fornecedor, Void>, TableCell<Fornecedor, Void>>() {
+        Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactory = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
             @Override
-            public TableCell<Fornecedor, Void> call(final TableColumn<Fornecedor, Void> param) {
-                final TableCell<Fornecedor, Void> cell = new TableCell<Fornecedor, Void>() {
+            public TableCell<Cliente, Void> call(final TableColumn<Cliente, Void> param) {
+                final TableCell<Cliente, Void> cell = new TableCell<Cliente, Void>() {
 
                     private final Button btn = new Button("Editar");{
                         btn.setOnAction((ActionEvent event) -> {
                         	
-                            Fornecedor fornecedor = getTableView().getItems().get(getIndex());
+                            Cliente cliente = getTableView().getItems().get(getIndex());
                             
                             try {
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/fornecedor/CadastroFornecedor.fxml"));
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/cliente/CadastroCliente.fxml"));
 	                            Parent root = loader.load();
 	
-	                            ControllerViewFornecedor controllerView = loader.getController();
-	                            controllerView.setLabelText(fornecedor);
+	                            ControllerViewCliente controllerView = loader.getController();
+	                            controllerView.setLabelText(cliente);
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Editar Fornecedor - Uni Venda");
+	                            stage.setTitle("Editar Cliente - Uni Venda");
 	                			stage.setResizable(false);
 	                            stage.show();
 	                            
@@ -153,28 +131,28 @@ public class ControllerViewListaFornecedor implements Initializable{
     }
 	
 	private void addButtonExcluir() {
-        TableColumn<Fornecedor, Void> colBtn = new TableColumn("Excluir");
+        TableColumn<Cliente, Void> colBtn = new TableColumn("Excluir");
 
-        Callback<TableColumn<Fornecedor, Void>, TableCell<Fornecedor, Void>> cellFactory = new Callback<TableColumn<Fornecedor, Void>, TableCell<Fornecedor, Void>>() {
+        Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactory = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
             @Override
-            public TableCell<Fornecedor, Void> call(final TableColumn<Fornecedor, Void> param) {
-                final TableCell<Fornecedor, Void> cell = new TableCell<Fornecedor, Void>() {
+            public TableCell<Cliente, Void> call(final TableColumn<Cliente, Void> param) {
+                final TableCell<Cliente, Void> cell = new TableCell<Cliente, Void>() {
 
                     private final Button btn = new Button("Excluir");{
                         btn.setOnAction((ActionEvent event) -> {
                         	
-                            Fornecedor fornecedor = getTableView().getItems().get(getIndex());
+                            Cliente cliente = getTableView().getItems().get(getIndex());
                             
                             try {
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/fornecedor/ExcluirFornecedor.fxml"));
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/cliente/ExcluirCliente.fxml"));
 	                            Parent root = loader.load();
 	
-	                            ControllerViewExcluirFornecedor controllerView = loader.getController();
-	                            controllerView.setLabelText(fornecedor);
+	                            ControllerViewExcluirCliente controllerView = loader.getController();
+	                            controllerView.setLabelText(cliente);
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Excluir Fornecedor - Uni Venda");
+	                            stage.setTitle("Excluir Cliente - Uni Venda");
 	                			stage.setResizable(false);
 
 	                            stage.show();
@@ -219,5 +197,17 @@ public class ControllerViewListaFornecedor implements Initializable{
 		 t.start(stage);
 	 }
 
+	public void start(Stage primaryStage) {
+		try {
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/cliente/ListaCliente.fxml"));
+			Scene scene = new Scene(pane);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Lista Clientes - Uni Venda");
+			primaryStage.show();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
-

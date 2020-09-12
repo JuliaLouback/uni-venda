@@ -46,7 +46,7 @@
                   <Image url="@../../img/people.png" />
                </image>
             </ImageView>
-            <Button layoutX="25.0" layoutY="165.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Clientes" textFill="#dc3545">
+            <Button fx:id="btnCliente" layoutX="25.0" layoutY="165.0" mnemonicParsing="false" onAction="#btnIrCliente" prefHeight="40.0" prefWidth="150.0" style="-fx-border-color: #DC3545;" text="Clientes" textFill="#dc3545">
                <font>
                   <Font size="20.0" />
                </font>

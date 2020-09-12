@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.cliente.ControllerViewCliente">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.cliente.ControllerViewCliente">
    <children>
-      <Label layoutX="200.0" layoutY="39.0" text="Julia" />
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
+        <menus>
+          <Menu mnemonicParsing="false" text="Uni Venda">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#VoltarPainel" text="Inicial" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Sair" />
+        </menus>
+      </MenuBar>
+      <Label layoutX="40.0" layoutY="64.0" text="Cliente" textFill="#dc3545">
+         <font>
+            <Font name="Arial Bold" size="38.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelChange" layoutX="40.0" layoutY="116.0" text="Adicionar">
+         <font>
+            <Font name="Arial" size="31.0" />
+         </font>
+      </Label>
+      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="953.0" />
+      <Label layoutX="40.0" layoutY="190.0" text="Nome">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="270.0" text="CPF">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="457.0" layoutY="270.0" text="E-mail">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Nome" layoutX="40.0" layoutY="230.0" prefHeight="30.0" prefWidth="817.0" />
+      <TextField fx:id="Email" layoutX="457.0" layoutY="310.0" prefHeight="30.0" prefWidth="400.0" />
+      <TextField fx:id="Cpf" layoutX="40.0" layoutY="310.0" prefHeight="30.0" prefWidth="400.0" />
+      <Button fx:id="btnAdd" layoutX="580.0" layoutY="372.0" mnemonicParsing="false" onAction="#adicionarCliente" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Adicionar" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBack" layoutX="729.0" layoutY="372.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="104.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="270.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -106,7 +106,7 @@ public class ControllerViewExcluirFornecedor {
 	     this.Numero.setText(String.valueOf(endereco.getNumero()));
 	     this.Rua.setText(endereco.getRua());
 	     this.Bairro.setText(endereco.getBairro());
-	     this.Cidade.setText(endereco.getEstado());
+	     this.Cidade.setText(endereco.getCidade());
 	     this.Estado.setText(endereco.getEstado());
 	     
 	     lista = new DaoFornecedorTelefone().listarFornecedorTelefone(fornecedor.getCnpj());

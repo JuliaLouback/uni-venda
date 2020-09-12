@@ -17,7 +17,7 @@
         <columns>
           <TableColumn fx:id="Nome_empresa" minWidth="180.0" prefWidth="301.59998321533203" text="Empresa" />
             <TableColumn fx:id="Cnpj" minWidth="120.0" prefWidth="258.3999938964844" text="Cnpj" />
-            <TableColumn fx:id="Email" minWidth="150.0" prefWidth="280.0" text="Email" />
+            <TableColumn fx:id="Email" minWidth="150.0" prefWidth="280.0" text="E-mail" />
         </columns>
       </TableView>
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">

@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import resources.view.cliente.ControllerViewCliente;
+import resources.view.cliente.ControllerViewListaCliente;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
 
 public class ControllerViewPainel {
@@ -16,6 +18,10 @@ public class ControllerViewPainel {
     @FXML
     private Button btnFornecedor;
 
+
+    @FXML
+    private Button btnCliente;
+    
     @FXML
     void btnIrFornecedor(ActionEvent event) {
     	 Stage stage = (Stage) btnFornecedor.getScene().getWindow(); 
@@ -36,4 +42,10 @@ public class ControllerViewPainel {
 		}
 	}
 
+	@FXML
+    void btnIrCliente(ActionEvent event) {
+		Stage stage = (Stage) btnCliente.getScene().getWindow(); 
+	    ControllerViewListaCliente t = new ControllerViewListaCliente();
+		t.start(stage);
+    }
 }

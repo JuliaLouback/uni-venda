@@ -114,6 +114,7 @@ public class ControllerViewFornecedor implements Initializable{
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			
 		} catch (IOException e) {

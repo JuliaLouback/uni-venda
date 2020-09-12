@@ -16,7 +16,10 @@ public class Principal extends Application{
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Painel - Uni Venda");
+			primaryStage.setResizable(false);
+
 			primaryStage.show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
