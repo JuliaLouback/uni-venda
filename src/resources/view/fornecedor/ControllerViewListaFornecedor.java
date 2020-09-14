@@ -26,6 +26,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -81,6 +82,8 @@ public class ControllerViewListaFornecedor implements Initializable{
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Lista Fornecedores - Uni Venda");
+			primaryStage.centerOnScreen();
+			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
 
 		} catch (IOException e) {
@@ -113,6 +116,8 @@ public class ControllerViewListaFornecedor implements Initializable{
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
 	                            stage.setTitle("Editar Fornecedor - Uni Venda");
+	                            stage.centerOnScreen();
+	                			stage.getIcons().add(new Image("/resources/img/money.png"));
 	                			stage.setResizable(false);
 	                            stage.show();
 	                            
@@ -175,6 +180,8 @@ public class ControllerViewListaFornecedor implements Initializable{
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
 	                            stage.setTitle("Excluir Fornecedor - Uni Venda");
+	                            stage.centerOnScreen();
+	                			stage.getIcons().add(new Image("/resources/img/money.png"));
 	                			stage.setResizable(false);
 
 	                            stage.show();

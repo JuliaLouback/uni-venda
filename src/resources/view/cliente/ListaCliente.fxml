@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.cliente.ControllerViewListaCliente">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.cliente.ControllerViewListaCliente">
    <children>
-      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1282.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
         <menus>
           <Menu mnemonicParsing="false" text="Uni Venda">
             <items>
@@ -26,20 +25,20 @@
       </MenuBar>
       <Label layoutX="40.0" layoutY="64.0" text="Lista de Clientes" textFill="#dc3545">
          <font>
-            <Font name="Arial Bold" size="38.0" />
+            <Font name="Arial Bold" size="42.0" />
          </font>
       </Label>
-      <Separator layoutX="40.0" layoutY="127.0" prefHeight="0.0" prefWidth="953.0" />
-      <Button fx:id="btnAdd" layoutX="830.0" layoutY="160.0" mnemonicParsing="false" onAction="#AddCliente" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #dc3545;" text="Cadastrar" textFill="WHITE">
+      <Separator layoutX="40.0" layoutY="127.0" prefHeight="0.0" prefWidth="1190.0" />
+      <Button fx:id="btnAdd" layoutX="1095.0" layoutY="160.0" mnemonicParsing="false" onAction="#AddCliente" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #dc3545;" text="Cadastrar" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Button>
-      <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="463.0" prefWidth="921.0" stylesheets="@../../css/style.css">
+      <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="580.0" prefWidth="1190.0" stylesheets="@../../css/style.css">
         <columns>
-          <TableColumn fx:id="Nome" minWidth="180.0" prefWidth="242.40000534057617" text="Nome" />
+          <TableColumn fx:id="Nome" minWidth="200.0" prefWidth="242.40000534057617" text="Nome" />
           <TableColumn fx:id="Cpf" minWidth="120.0" prefWidth="208.0" text="CPF" />
-            <TableColumn fx:id="Email" minWidth="150.0" prefWidth="280.80010986328125" text="E-mail" />
+            <TableColumn fx:id="Email" minWidth="200.0" prefWidth="280.80010986328125" text="E-mail" />
         </columns>
       </TableView>
    </children>

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import resources.view.cliente.ControllerViewCliente;
@@ -35,6 +36,8 @@ public class ControllerViewPainel {
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Painel - Uni Venda");
+			primaryStage.centerOnScreen();
+			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
 			
 		} catch (IOException e) {

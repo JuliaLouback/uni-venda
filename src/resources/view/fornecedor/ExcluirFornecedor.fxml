@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.fornecedor.ControllerViewExcluirFornecedor">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.fornecedor.ControllerViewExcluirFornecedor">
    <children>
-      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1282.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
         <menus>
           <Menu mnemonicParsing="false" text="Uni Venda">
                <items>
@@ -22,148 +22,148 @@
       </MenuBar>
       <Label layoutX="40.0" layoutY="64.0" text="Fornecedor" textFill="#dc3545">
          <font>
-            <Font name="Arial Bold" size="38.0" />
+            <Font name="Arial Bold" size="42.0" />
          </font>
       </Label>
-      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="953.0" />
+      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="1190.0" />
       <Label fx:id="Nome_empresa" layoutX="40.0" layoutY="190.0" text="Empresa:" textFill="#dc3545">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <Label layoutX="40.0" layoutY="116.0" text="Excluir">
          <font>
-            <Font size="31.0" />
+            <Font size="33.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="240.0" text="Email:" textFill="#dc3545">
+      <Label layoutX="40.0" layoutY="250.0" text="Email:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="290.0" text="CNPJ:" textFill="#dc3545">
+      <Label layoutX="40.0" layoutY="300.0" text="CNPJ:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="340.0" text="Inscrição Estadual:" textFill="#dc3545">
+      <Label layoutX="40.0" layoutY="350.0" text="Inscrição Estadual:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="390.0" text="Inscrição Municipal:" textFill="#dc3545">
+      <Label layoutX="40.0" layoutY="400.0" text="Inscrição Municipal:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="440.0" text="Telefone Fixo:" textFill="#dc3545">
+      <Label layoutX="40.0" layoutY="450.0" text="Telefone Fixo:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="490.0" text="Telefone Celular:" textFill="#dc3545">
+      <Label layoutX="40.0" layoutY="500.0" text="Telefone Celular:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="590.0" layoutY="240.0" text="CEP:" textFill="#dc3545">
+      <Label layoutX="590.0" layoutY="250.0" text="CEP:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="590.0" layoutY="490.0" text="Estado:" textFill="#dc3545">
+      <Label layoutX="590.0" layoutY="500.0" text="Estado:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="590.0" layoutY="340.0" text="Rua:" textFill="#dc3545">
+      <Label layoutX="590.0" layoutY="350.0" text="Rua:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="590.0" layoutY="390.0" text="Bairro:" textFill="#dc3545">
+      <Label layoutX="590.0" layoutY="400.0" text="Bairro:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="590.0" layoutY="440.0" text="Cidade:" textFill="#dc3545">
+      <Label layoutX="590.0" layoutY="450.0" text="Cidade:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="590.0" layoutY="290.0" text="Número:" textFill="#dc3545">
+      <Label layoutX="590.0" layoutY="300.0" text="Número:" textFill="#dc3545">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Email" layoutX="120.0" layoutY="240.0" text="Email:">
+      <Label fx:id="Email" layoutX="120.0" layoutY="250.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Cnpj" layoutX="120.0" layoutY="290.0" text="Email:">
+      <Label fx:id="Cnpj" layoutX="125.0" layoutY="300.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Inscricao_estadual" layoutX="255.0" layoutY="340.0" text="Email:">
+      <Label fx:id="Inscricao_estadual" layoutX="275.0" layoutY="350.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Inscricao_municipal" layoutX="270.0" layoutY="390.0" text="Email:">
+      <Label fx:id="Inscricao_municipal" layoutX="285.0" layoutY="400.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Telefone_fixo" layoutX="210.0" layoutY="440.0" text="Email:">
+      <Label fx:id="Telefone_fixo" layoutX="220.0" layoutY="450.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Telefone_celular" layoutX="240.0" layoutY="490.0" text="Email:">
+      <Label fx:id="Telefone_celular" layoutX="255.0" layoutY="500.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Cep" layoutX="650.0" layoutY="240.0" text="Email:">
+      <Label fx:id="Cep" layoutX="660.0" layoutY="250.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Numero" layoutX="700.0" layoutY="290.0" prefHeight="35.0" prefWidth="65.0" text="Email:">
+      <Label fx:id="Numero" layoutX="700.0" layoutY="300.0" prefHeight="35.0" prefWidth="103.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Rua" layoutX="650.0" layoutY="340.0" text="Email:">
+      <Label fx:id="Rua" layoutX="655.0" layoutY="350.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Bairro" layoutX="675.0" layoutY="390.0" text="Email:">
+      <Label fx:id="Bairro" layoutX="675.0" layoutY="400.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Cidade" layoutX="690.0" layoutY="440.0" text="Email:">
+      <Label fx:id="Cidade" layoutX="690.0" layoutY="450.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Estado" layoutX="690.0" layoutY="490.0" text="Email:">
+      <Label fx:id="Estado" layoutX="690.0" layoutY="500.0" text="Email:">
          <font>
-            <Font size="25.0" />
+            <Font size="27.0" />
          </font>
       </Label>
-      <Button layoutX="590.0" layoutY="612.0" mnemonicParsing="false" onAction="#btnExcluir" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Excluir" textFill="WHITE">
+      <Button layoutX="760.0" layoutY="590.0" mnemonicParsing="false" onAction="#btnExcluir" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Excluir" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btnBack" layoutX="729.0" layoutY="612.0" mnemonicParsing="false" onAction="#btnBack" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
+      <Button fx:id="btnBack" layoutX="908.0" layoutY="590.0" mnemonicParsing="false" onAction="#btnBack" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Button>
    </children>

@@ -18,6 +18,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -92,6 +93,8 @@ public class ControllerViewListaCliente implements Initializable {
 	                            stage.setScene(new Scene(root));
 	                            stage.setTitle("Editar Cliente - Uni Venda");
 	                			stage.setResizable(false);
+	                			stage.centerOnScreen();
+	                			stage.getIcons().add(new Image("/resources/img/money.png"));
 	                            stage.show();
 	                            
 	                            Stage stages = (Stage) btn.getScene().getWindow();
@@ -154,7 +157,8 @@ public class ControllerViewListaCliente implements Initializable {
 	                            stage.setScene(new Scene(root));
 	                            stage.setTitle("Excluir Cliente - Uni Venda");
 	                			stage.setResizable(false);
-
+	                			stage.centerOnScreen();
+	                			stage.getIcons().add(new Image("/resources/img/money.png"));
 	                            stage.show();
 	                            
 	                            Stage stages = (Stage) btn.getScene().getWindow();
@@ -203,6 +207,8 @@ public class ControllerViewListaCliente implements Initializable {
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Lista Clientes - Uni Venda");
+			primaryStage.centerOnScreen();
+			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
 			
 		} catch (IOException e) {

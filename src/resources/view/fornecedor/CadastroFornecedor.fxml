@@ -11,103 +11,142 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.fornecedor.ControllerViewFornecedor">
+<AnchorPane prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.fornecedor.ControllerViewFornecedor">
    <children>
       <Label layoutX="40.0" layoutY="64.0" text="Fornecedor" textFill="#dc3545">
          <font>
-            <Font name="Arial Bold" size="38.0" />
+            <Font name="Arial Bold" size="42.0" />
          </font>
       </Label>
-      <TextField fx:id="Cnpj" layoutX="40.0" layoutY="310.0" prefHeight="30.0" prefWidth="260.0" />
-      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="953.0" />
+      <TextField fx:id="Cnpj" layoutX="40.0" layoutY="330.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="1190.0" />
       <Label layoutX="40.0" layoutY="190.0" text="Empresa">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="457.0" layoutY="190.0" text="E-mail">
+      <Label layoutX="600.0" layoutY="190.0" text="E-mail">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="270.0" text="CNPJ">
+      <Label layoutX="40.0" layoutY="290.0" text="CNPJ">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="Nome_empresa" layoutX="40.0" layoutY="230.0" prefHeight="30.0" prefWidth="400.0" />
-      <TextField fx:id="Email" layoutX="457.0" layoutY="230.0" prefHeight="30.0" prefWidth="400.0" />
-      <TextField fx:id="Inscricao_estadual" layoutX="321.0" layoutY="310.0" prefHeight="30.0" prefWidth="260.0" />
-      <TextField fx:id="Inscricao_municipal" layoutX="598.0" layoutY="310.0" prefHeight="30.0" prefWidth="260.0" />
-      <Label layoutX="321.0" layoutY="270.0" text="Inscrição Estadual">
+      <TextField fx:id="Nome_empresa" layoutX="40.0" layoutY="230.0" prefHeight="40.0" prefWidth="540.0">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Email" layoutX="600.0" layoutY="230.0" prefHeight="40.0" prefWidth="540.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Inscricao_estadual" layoutX="415.0" layoutY="330.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Inscricao_municipal" layoutX="790.0" layoutY="330.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="415.0" layoutY="290.0" text="Inscrição Estadual">
+         <font>
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="598.0" layoutY="270.0" text="Inscrição Municipal">
+      <Label layoutX="790.0" layoutY="290.0" text="Inscrição Municipal">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="350.0" text="Telefone Fixo">
+      <Label layoutX="40.0" layoutY="390.0" text="Telefone Fixo">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="Telefone_celular" layoutX="457.0" layoutY="390.0" prefHeight="30.0" prefWidth="400.0" />
-      <Label layoutX="457.0" layoutY="350.0" text="Telefone Celular">
+      <TextField fx:id="Telefone_celular" layoutX="600.0" layoutY="430.0" prefHeight="40.0" prefWidth="540.0">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="600.0" layoutY="390.0" text="Telefone Celular">
+         <font>
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="Telefone_fixo" layoutX="40.0" layoutY="390.0" prefHeight="30.0" prefWidth="400.0" />
-      <TextField fx:id="Cep" layoutX="40.0" layoutY="470.0" prefHeight="30.0" prefWidth="190.0" />
-      <Label layoutX="40.0" layoutY="430.0" text="CEP">
+      <TextField fx:id="Telefone_fixo" layoutX="40.0" layoutY="430.0" prefHeight="40.0" prefWidth="540.0">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Cep" layoutX="40.0" layoutY="530.0" prefHeight="40.0" prefWidth="250.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="40.0" layoutY="490.0" text="CEP">
+         <font>
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="Rua" layoutX="457.0" layoutY="470.0" prefHeight="30.0" prefWidth="400.0" />
-      <Label layoutX="457.0" layoutY="430.0" text="Rua">
+      <TextField fx:id="Rua" layoutX="600.0" layoutY="530.0" prefHeight="40.0" prefWidth="540.0">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="600.0" layoutY="490.0" text="Rua">
+         <font>
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="Numero" layoutX="249.0" layoutY="470.0" prefHeight="30.0" prefWidth="190.0" />
-      <Label layoutX="250.0" layoutY="430.0" text="Número">
+      <TextField fx:id="Numero" layoutX="322.0" layoutY="528.0" prefHeight="40.0" prefWidth="250.0">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="322.0" layoutY="490.0" text="Número">
+         <font>
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="510.0" text="Bairro">
+      <Label layoutX="40.0" layoutY="590.0" text="Bairro">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="321.0" layoutY="510.0" text="Cidade">
+      <Label layoutX="415.0" layoutY="590.0" text="Cidade">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="598.0" layoutY="510.0" text="Estado">
+      <Label layoutX="790.0" layoutY="590.0" text="Estado">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="Bairro" layoutX="40.0" layoutY="550.0" prefHeight="30.0" prefWidth="260.0" />
-      <TextField fx:id="Cidade" layoutX="321.0" layoutY="550.0" prefHeight="30.0" prefWidth="260.0" />
-      <TextField fx:id="Estado" layoutX="598.0" layoutY="550.0" prefHeight="30.0" prefWidth="260.0" />
-      <Button fx:id="btnAdd" layoutX="580.0" layoutY="612.0" mnemonicParsing="false" onAction="#addFornecedor" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Adicionar" textFill="WHITE">
+      <TextField fx:id="Bairro" layoutX="40.0" layoutY="630.0" prefHeight="40.0" prefWidth="350.0">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Cidade" layoutX="415.0" layoutY="630.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Estado" layoutX="790.0" layoutY="630.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Button fx:id="btnAdd" layoutX="860.0" layoutY="720.0" mnemonicParsing="false" onAction="#addFornecedor" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Adicionar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btnBack" layoutX="729.0" layoutY="612.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
+      <Button fx:id="btnBack" layoutX="1007.0" layoutY="720.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="22.0" />
          </font>
       </Button>
-      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1026.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1282.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
         <menus>
           <Menu id="editar" mnemonicParsing="false" text="Uni Venda">
                <items>
@@ -121,60 +160,60 @@
       </MenuBar>
       <Label fx:id="labelChange" layoutX="40.0" layoutY="116.0" text="Adicionar">
          <font>
-            <Font name="Arial" size="31.0" />
+            <Font name="Arial" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="120.0" layoutY="190.0" text="*" textFill="#dc3545">
+      <Label layoutX="135.0" layoutY="190.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="518.0" layoutY="190.0" text="*" textFill="#dc3545">
+      <Label layoutX="670.0" layoutY="190.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="90.0" layoutY="270.0" text="*" textFill="#dc3545">
+      <Label layoutX="105.0" layoutY="290.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="482.0" layoutY="270.0" text="*" textFill="#dc3545">
+      <Label layoutX="605.0" layoutY="290.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="772.0" layoutY="270.0" text="*" textFill="#dc3545">
+      <Label layoutX="985.0" layoutY="284.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="79.0" layoutY="430.0" text="*" textFill="#dc3545">
+      <Label layoutX="95.0" layoutY="490.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="330.0" layoutY="430.0" text="*" textFill="#dc3545">
+      <Label layoutX="415.0" layoutY="490.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="496.0" layoutY="430.0" text="*" textFill="#dc3545">
+      <Label layoutX="650.0" layoutY="490.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="98.0" layoutY="510.0" text="*" textFill="#dc3545">
+      <Label layoutX="106.0" layoutY="590.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="388.0" layoutY="510.0" text="*" textFill="#dc3545">
+      <Label layoutX="496.0" layoutY="590.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="663.0" layoutY="510.0" text="*" textFill="#dc3545">
+      <Label layoutX="870.0" layoutY="590.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

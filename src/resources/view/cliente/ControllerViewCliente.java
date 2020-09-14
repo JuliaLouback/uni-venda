@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.dao.DaoCliente;
@@ -109,6 +110,8 @@ public class ControllerViewCliente implements Initializable {
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
+			primaryStage.centerOnScreen();
+			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
 			
 		} catch (IOException e) {

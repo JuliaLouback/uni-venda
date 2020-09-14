@@ -3,6 +3,7 @@ package main.application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -17,6 +18,8 @@ public class Principal extends Application{
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Painel - Uni Venda");
 			primaryStage.setResizable(false);
+			primaryStage.centerOnScreen();
+			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 
 			primaryStage.show();
 			
