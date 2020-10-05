@@ -1,4 +1,4 @@
-package resources.view.cliente;
+package resources.view.categoria;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,25 +15,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.dao.DaoCliente;
+import main.dao.DaoCategoria;
 import main.dao.DaoFornecedor;
-import main.entity.Cliente;
+import main.entity.Categoria;
 import main.entity.Fornecedor;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
 import resources.view.painel.ControllerViewPainel;
 
-public class ControllerViewCliente implements Initializable {
+public class ControllerViewCategoria implements Initializable {
 
     @FXML
     private TextField Nome;
-
-    @FXML
-    private TextField Email;
-
-    @FXML
-    private TextField Cpf;
 
     @FXML
     private Label labelChange;
@@ -44,12 +38,12 @@ public class ControllerViewCliente implements Initializable {
     @FXML
     private Button btnBack;
 
-    private Cliente clientes = new Cliente();
+    private Categoria Categorias = new Categoria();
 
     @FXML
     void BackButton(ActionEvent event) {
     	Stage stage = (Stage) btnBack.getScene().getWindow(); 
-        ControllerViewListaCliente t = new ControllerViewListaCliente();
+        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
 	    t.start(stage);
     }
 
@@ -61,9 +55,9 @@ public class ControllerViewCliente implements Initializable {
     }
 
     @FXML
-    void adicionarCliente(ActionEvent event) {
+    void adicionarCategoria(ActionEvent event) {
     	
-    	if(clientes.getNome() != null && !clientes.getNome().isEmpty()) {
+    	if(Categorias.getNome() != null && !Categorias.getNome().isEmpty()) {
     		editar();
     	} else {
     		adicionar();
@@ -72,29 +66,28 @@ public class ControllerViewCliente implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		  MaskFieldUtil.cpfField(this.Cpf);
+		  
 	}
 	
 	public void adicionar() {
 		if(validacaoCampos()) {
 			
-			Cliente cliente = new Cliente();
-			cliente.setCpf(Cpf.getText());
-			cliente.setEmail(Email.getText());
-			cliente.setNome(Nome.getText());
+			Categoria Categoria = new Categoria();
 			
-	    	new DaoCliente().inserirCliente(cliente);
+			Categoria.setNome(Nome.getText());
+			
+	    	new DaoCategoria().inserirCategoria(Categoria);
 
-	    	new ShowAlert().sucessoAlert("Cliente adicionado com sucesso!"); 
+	    	new ShowAlert().sucessoAlert("Categoria adicionado com sucesso!"); 
 	    	
 	    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	        ControllerViewListaCliente t = new ControllerViewListaCliente();
+ 	        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
 		    t.start(stage);
 		}
 	}
 
 	public boolean validacaoCampos() {
-		if(Cpf.getText().isEmpty() | Nome.getText().isEmpty()) {
+		if(Nome.getText().isEmpty()) {
 			
 			new ShowAlert().validacaoAlert();
 			
@@ -106,7 +99,7 @@ public class ControllerViewCliente implements Initializable {
 
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/cliente/CadastroCliente.fxml"));
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/Categoria/CadastroCategoria.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
@@ -119,30 +112,28 @@ public class ControllerViewCliente implements Initializable {
 		}
 	}
 	
-	public void setLabelText(Cliente cliente){
-		 this.clientes = cliente;
+	public void setLabelText(Categoria Categoria){
+		 this.Categorias = Categoria;
 		 this.labelChange.setText("Editar"); 
 		 this.btnAdd.setText("Editar");
-		 this.Cpf.setEditable(false);
-	     this.Cpf.setText(cliente.getCpf());
-	     this.Nome.setText(cliente.getNome());
-	     this.Email.setText(cliente.getEmail());
+		
+	     this.Nome.setText(Categoria.getNome());
 	}
 	
 	public void editar() {
 		if(validacaoCampos()) {
 			
-			Cliente cliente = new Cliente();
-			cliente.setCpf(Cpf.getText());
-			cliente.setEmail(Email.getText());
-			cliente.setNome(Nome.getText());
+			Categoria Categoria = new Categoria();
 			
-	    	new DaoCliente().alterarCliente(cliente);
+			Categoria.setNome(Nome.getText());
+			Categoria.setId_categoria(Categorias.getId_categoria());
+			
+	    	new DaoCategoria().alterarCategoria(Categoria);
 
-	    	new ShowAlert().sucessoAlert("Cliente adicionado com sucesso!"); 
+	    	new ShowAlert().sucessoAlert("Categoria adicionado com sucesso!"); 
 	    	
 	    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	        ControllerViewListaCliente t = new ControllerViewListaCliente();
+	        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
 		    t.start(stage);
 		}
 	}

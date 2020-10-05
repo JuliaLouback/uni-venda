@@ -1,4 +1,4 @@
-package resources.view.cliente;
+package resources.view.categoria;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,43 +22,39 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import main.dao.DaoCliente;
-import main.entity.Cliente;
+import main.dao.DaoCategoria;
+import main.entity.Categoria;
 import resources.view.painel.ControllerViewPainel;
 
-public class ControllerViewListaCliente implements Initializable {
+public class ControllerViewListaCategoria implements Initializable {
 
     @FXML
     private Button btnAdd;
 
     @FXML
-    private TableView<Cliente> tabela;
+    private TableView<Categoria> tabela;
 
     @FXML
-    private TableColumn<Cliente, String> Nome;
+    private TableColumn<Categoria, String> Nome;
 
     @FXML
-    private TableColumn<Cliente, String> Cpf;
-
-    @FXML
-    private TableColumn<Cliente, String> Email;
+    private TableColumn<Categoria, Integer> Id_categoria;
     
-    ArrayList<Cliente> listas = new DaoCliente().listarCliente();
+    ArrayList<Categoria> listas = new DaoCategoria().listarCategoria();
 
-    ObservableList<Cliente> lista = FXCollections.observableArrayList(listas);
+    ObservableList<Categoria> lista = FXCollections.observableArrayList(listas);
 
     @FXML
-    void AddCliente(ActionEvent event) {
+    void AddCategoria(ActionEvent event) {
     	 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	     ControllerViewCliente t = new ControllerViewCliente();
+	     ControllerViewCategoria t = new ControllerViewCategoria();
 		 t.start(stage);
     }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Nome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
-		Cpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));
-		Email.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
+		Nome.setCellValueFactory(new PropertyValueFactory<Categoria, String>("Nome"));
+		Id_categoria.setCellValueFactory(new PropertyValueFactory<Categoria, Integer>("Id_categoria"));
 		
 	    tabela.setItems(lista);
 	    tabela.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -67,28 +63,28 @@ public class ControllerViewListaCliente implements Initializable {
 	}
 
 	private void addButtonToTable() {
-        TableColumn<Cliente, Void> colBtn = new TableColumn("Editar");
+        TableColumn<Categoria, Void> colBtn = new TableColumn("Editar");
 
-        Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactory = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
+        Callback<TableColumn<Categoria, Void>, TableCell<Categoria, Void>> cellFactory = new Callback<TableColumn<Categoria, Void>, TableCell<Categoria, Void>>() {
             @Override
-            public TableCell<Cliente, Void> call(final TableColumn<Cliente, Void> param) {
-                final TableCell<Cliente, Void> cell = new TableCell<Cliente, Void>() {
+            public TableCell<Categoria, Void> call(final TableColumn<Categoria, Void> param) {
+                final TableCell<Categoria, Void> cell = new TableCell<Categoria, Void>() {
 
                     private final Button btn = new Button("Editar");{
                         btn.setOnAction((ActionEvent event) -> {
                         	
-                            Cliente cliente = getTableView().getItems().get(getIndex());
+                            Categoria Categoria = getTableView().getItems().get(getIndex());
                             
                             try {
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/cliente/CadastroCliente.fxml"));
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/Categoria/CadastroCategoria.fxml"));
 	                            Parent root = loader.load();
 	
-	                            ControllerViewCliente controllerView = loader.getController();
-	                            controllerView.setLabelText(cliente);
+	                            ControllerViewCategoria controllerView = loader.getController();
+	                            controllerView.setLabelText(Categoria);
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Editar Cliente - Uni Venda");
+	                            stage.setTitle("Editar Categoria - Uni Venda");
 	                			stage.setResizable(false);
 	                			stage.centerOnScreen();
 	                			stage.getIcons().add(new Image("/resources/img/money.png"));
@@ -131,28 +127,28 @@ public class ControllerViewListaCliente implements Initializable {
     }
 	
 	private void addButtonExcluir() {
-        TableColumn<Cliente, Void> colBtn = new TableColumn("Excluir");
+        TableColumn<Categoria, Void> colBtn = new TableColumn("Excluir");
 
-        Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactory = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
+        Callback<TableColumn<Categoria, Void>, TableCell<Categoria, Void>> cellFactory = new Callback<TableColumn<Categoria, Void>, TableCell<Categoria, Void>>() {
             @Override
-            public TableCell<Cliente, Void> call(final TableColumn<Cliente, Void> param) {
-                final TableCell<Cliente, Void> cell = new TableCell<Cliente, Void>() {
+            public TableCell<Categoria, Void> call(final TableColumn<Categoria, Void> param) {
+                final TableCell<Categoria, Void> cell = new TableCell<Categoria, Void>() {
 
                     private final Button btn = new Button("Excluir");{
                         btn.setOnAction((ActionEvent event) -> {
                         	
-                            Cliente cliente = getTableView().getItems().get(getIndex());
+                            Categoria Categoria = getTableView().getItems().get(getIndex());
                             
                             try {
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/cliente/ExcluirCliente.fxml"));
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/Categoria/ExcluirCategoria.fxml"));
 	                            Parent root = loader.load();
 	
-	                            ControllerViewExcluirCliente controllerView = loader.getController();
-	                            controllerView.setLabelText(cliente);
+	                            ControllerViewExcluirCategoria controllerView = loader.getController();
+	                            controllerView.setLabelText(Categoria);
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Excluir Cliente - Uni Venda");
+	                            stage.setTitle("Excluir Categoria - Uni Venda");
 	                			stage.setResizable(false);
 	                			stage.centerOnScreen();
 	                			stage.getIcons().add(new Image("/resources/img/money.png"));
@@ -200,10 +196,10 @@ public class ControllerViewListaCliente implements Initializable {
 
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/cliente/ListaCliente.fxml"));
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/Categoria/ListaCategoria.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Lista Clientes - Uni Venda");
+			primaryStage.setTitle("Lista Categorias - Uni Venda");
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();

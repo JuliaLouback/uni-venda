@@ -69,9 +69,7 @@ public class Fornecedor {
 	}
 	@Override
 	public String toString() {
-		return "Fornecedor [Nome_empresa=" + Nome_empresa + ", Email=" + Email + ", Cnpj=" + Cnpj
-				+ ", Inscricao_estadual=" + Inscricao_estadual + ", Inscricao_municipal=" + Inscricao_municipal
-				+ ", Id_endereco=" + Id_endereco + "]";
+		return Nome_empresa;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package resources.view.fornecedor;
+package resources.view.funcionario;
 
 import java.io.BufferedReader;
 
@@ -25,83 +25,90 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.dao.DaoEndereco;
-import main.dao.DaoFornecedor;
-import main.dao.DaoFornecedorTelefone;
+import main.dao.DaoFuncionario;
+import main.dao.DaoFuncionarioTelefone;
 import main.dao.DaoTelefone;
 import main.entity.Endereco;
-import main.entity.Fornecedor;
-import main.entity.FornecedorTelefone;
+import main.entity.Funcionario;
+import main.entity.FuncionarioTelefone;
 import main.entity.Telefone;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
 import resources.view.painel.ControllerViewPainel;
 
-public class ControllerViewFornecedor implements Initializable{
+public class ControllerViewFuncionario implements Initializable{
 
-    @FXML
-    private TextField Cnpj;
+	  @FXML
+	    private TextField Nome;
 
-    @FXML
-    private TextField Nome_empresa;
+	    @FXML
+	    private TextField Cpf;
 
-    @FXML
-    private TextField Email;
+	    @FXML
+	    private TextField Email;
 
-    @FXML
-    private TextField Inscricao_estadual;
+	    @FXML
+	    private TextField Salario;
 
-    @FXML
-    private TextField Inscricao_municipal;
+	    @FXML
+	    private TextField Telefone_celular;
 
-    @FXML
-    private TextField Telefone_celular;
+	    @FXML
+	    private TextField Telefone_fixo;
 
-    @FXML
-    private TextField Telefone_fixo;
+	    @FXML
+	    private TextField Cep;
 
-    @FXML
-    private TextField Cep;
+	    @FXML
+	    private TextField Rua;
 
-    @FXML
-    private TextField Rua;
+	    @FXML
+	    private TextField Numero;
 
-    @FXML
-    private TextField Numero;
+	    @FXML
+	    private TextField Bairro;
 
-    @FXML
-    private TextField Bairro;
+	    @FXML
+	    private TextField Cidade;
 
-    @FXML
-    private TextField Cidade;
+	    @FXML
+	    private TextField Estado;
 
-    @FXML
-    private TextField Estado;
+	    @FXML
+	    private Button btnAdd;
 
-    @FXML
-    private Button btnAdd;
+	    @FXML
+	    private Button btnBack;
 
-    @FXML
-    private Button btnBack;
+	    @FXML
+	    private Label labelChange;
+
+	    @FXML
+	    private DatePicker Data_nascimento;
+
+	    @FXML
+	    private ComboBox<String> Cargo;
+
+	    @FXML
+	    private ComboBox<String> Status;
     
-
-    @FXML
-    private Label labelChange;
-    
-    private Fornecedor fornecedores = new Fornecedor();
+    private Funcionario Funcionarios = new Funcionario();
     
     private ArrayList<Telefone> listaTelefone = new ArrayList<Telefone>();
 
     private ArrayList<String> listaTelefoneTipo = new ArrayList<String>();
     
     @FXML
-    void addFornecedor(ActionEvent event) {
+    void addFuncionario(ActionEvent event) {
     	
-    	if(fornecedores.getNome_empresa() != null && !fornecedores.getNome_empresa().isEmpty()) {
+    	if(Funcionarios.getNome() != null && !Funcionarios.getNome().isEmpty()) {
     		editar();
     	} else {
     		adicionar();
@@ -111,10 +118,10 @@ public class ControllerViewFornecedor implements Initializable{
 
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/fornecedor/CadastroFornecedor.fxml"));
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/Funcionario/CadastroFuncionario.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
+			primaryStage.setTitle("Cadastro Funcionário - Uni Venda");
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
@@ -129,24 +136,26 @@ public class ControllerViewFornecedor implements Initializable{
 	 @FXML
 	 void BackButton(ActionEvent event) {
 		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+	     ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
 		 t.start(stage);
 		 
 	 }
 	 
-	 public void setLabelText(Fornecedor fornecedor){
-		 this.fornecedores = fornecedor;
+	 public void setLabelText(Funcionario funcionario){
+		 this.Funcionarios = funcionario;
 		 this.labelChange.setText("Editar"); 
 		 this.btnAdd.setText("Editar");
-		 this.Cnpj.setEditable(false);
-	     this.Nome_empresa.setText(fornecedor.getNome_empresa());
-	     this.Email.setText(fornecedor.getEmail());
-	     this.Inscricao_estadual.setText(String.valueOf(fornecedor.getInscricao_estadual()));
-	     this.Inscricao_municipal.setText(String.valueOf(fornecedor.getInscricao_municipal()));
-	     this.Cnpj.setText(fornecedor.getCnpj());
-	     
+		 this.Cpf.setEditable(false);
+	     this.Cpf.setText(funcionario.getCpf());
+	     this.Nome.setText(funcionario.getNome());
+	     this.Email.setText(funcionario.getEmail());
+	     this.Cargo.setValue(funcionario.getCargo());
+	     this.Data_nascimento.setValue(funcionario.getData_nascimento());	
+	     this.Status.setValue(funcionario.getStatus());
+	     this.Salario.setText(String.valueOf(funcionario.getSalario()));
+
 	     Endereco endereco = new Endereco();
-	     endereco = new DaoEndereco().listarEndereco(fornecedor.getId_endereco());
+	     endereco = new DaoEndereco().listarEndereco(funcionario.getId_endereco());
 	     
 	     this.Cep.setText(endereco.getCep());
 	     this.Numero.setText(String.valueOf(endereco.getNumero()));
@@ -155,7 +164,7 @@ public class ControllerViewFornecedor implements Initializable{
 	     this.Cidade.setText(endereco.getCidade());
 	     this.Estado.setText(endereco.getEstado());
 	     
-	     ArrayList<Long> lista = new DaoFornecedorTelefone().listarFornecedorTelefone(fornecedor.getCnpj());
+	     ArrayList<Long> lista = new DaoFuncionarioTelefone().listarFuncionarioTelefone(funcionario.getCpf());
 	  
 	    
 	     lista.forEach(action -> {
@@ -190,16 +199,19 @@ public class ControllerViewFornecedor implements Initializable{
 		    	
 	    	long id = new DaoEndereco().inserirEndereco(endereco);
 	    	
-	    	Fornecedor fornecedor = new Fornecedor();
+	    	Funcionario funcionario = new Funcionario();
 	    	
-	    	fornecedor.setNome_empresa(Nome_empresa.getText());
-	    	fornecedor.setCnpj(Cnpj.getText());
-	    	fornecedor.setEmail(Email.getText());
-	    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
-	    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
-	    	fornecedor.setId_endereco(id);
+	    	funcionario.setCpf(Cpf.getText());
+	    	funcionario.setNome(Nome.getText());
+	    	funcionario.setEmail(Email.getText());
+	    	funcionario.setCargo(Cargo.getValue().toString());
+			funcionario.setData_nascimento(Data_nascimento.getValue());
+	    	funcionario.setStatus(Status.getValue().toString());
+			funcionario.setSalario(Float.parseFloat(Salario.getText()));
+
+			funcionario.setId_endereco(id);
 	    	
-	    	new DaoFornecedor().inserirFornecedor(fornecedor);
+	    	new DaoFuncionario().inserirFuncionario(funcionario);
 	    	
 	    	if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
 	    		Telefone telefoneFixo = new Telefone();
@@ -209,11 +221,11 @@ public class ControllerViewFornecedor implements Initializable{
 	    		
 	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
 	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
+	    		FuncionarioTelefone FuncionarioTelefone = new FuncionarioTelefone();
+	    		FuncionarioTelefone.setCpf(Cpf.getText());
+	    		FuncionarioTelefone.setId_telefone(ids);
 	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    		new DaoFuncionarioTelefone().inserirFuncionarioTelefone(FuncionarioTelefone);
 	    	}
 	    	
 	    	if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
@@ -224,17 +236,17 @@ public class ControllerViewFornecedor implements Initializable{
 	    		
 	    		long ids = new DaoTelefone().inserirTelefone(telefoneCelular);
 	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
+	    		FuncionarioTelefone FuncionarioTelefone = new FuncionarioTelefone();
+	    		FuncionarioTelefone.setCpf(Cpf.getText());
+	    		FuncionarioTelefone.setId_telefone(ids);
 	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    		new DaoFuncionarioTelefone().inserirFuncionarioTelefone(FuncionarioTelefone);
 	    	}
 	    	
-	    	new ShowAlert().sucessoAlert("Fornecedor adicionado com sucesso!"); 
+	    	new ShowAlert().sucessoAlert("Funcionario adicionado com sucesso!"); 
 	    	
 	    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-		     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+		     ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
 			 t.start(stage);
 		}
 	
@@ -243,15 +255,17 @@ public class ControllerViewFornecedor implements Initializable{
 	 
 	 private void editar() {
 		if(validacaoCampos()) {
-			Fornecedor fornecedor = new Fornecedor();
+			Funcionario funcionario = new Funcionario();
 		    	
-	    	fornecedor.setNome_empresa(Nome_empresa.getText());
-	    	fornecedor.setCnpj(Cnpj.getText());
-	    	fornecedor.setEmail(Email.getText());
-	    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
-	    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
+			funcionario.setCpf(Cpf.getText());
+	    	funcionario.setNome(Nome.getText());
+	    	funcionario.setEmail(Email.getText());
+	    	funcionario.setCargo(Cargo.getValue().toString());
+			funcionario.setData_nascimento(Data_nascimento.getValue());
+	    	funcionario.setStatus(Status.getValue().toString());
+			funcionario.setSalario(Float.parseFloat(Salario.getText()));
 	    	
-	    	new DaoFornecedor().alterarFornecedor(fornecedor);
+	    	new DaoFuncionario().alterarFuncionario(funcionario);
 	    	
 	        Endereco endereco = new Endereco();
 	    	
@@ -261,7 +275,7 @@ public class ControllerViewFornecedor implements Initializable{
 	    	endereco.setBairro(Bairro.getText());
 	    	endereco.setCidade(Cidade.getText());
 	    	endereco.setEstado(Estado.getText());
-	    	endereco.setId_endereco(fornecedores.getId_endereco());
+	    	endereco.setId_endereco(Funcionarios.getId_endereco());
 		    	
 	    	new DaoEndereco().alterarEndereco(endereco);
 	    	
@@ -286,11 +300,11 @@ public class ControllerViewFornecedor implements Initializable{
 	    		
 	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
 	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
+	    		FuncionarioTelefone FuncionarioTelefone = new FuncionarioTelefone();
+	    		FuncionarioTelefone.setCpf(Cpf.getText());
+	    		FuncionarioTelefone.setId_telefone(ids);
 	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    		new DaoFuncionarioTelefone().inserirFuncionarioTelefone(FuncionarioTelefone);
 	    	}
 	    	
 		    if(listaTelefoneTipo.contains("Celular")) {
@@ -315,16 +329,16 @@ public class ControllerViewFornecedor implements Initializable{
 	    		
 	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
 	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
+	    		FuncionarioTelefone FuncionarioTelefone = new FuncionarioTelefone();
+	    		FuncionarioTelefone.setCpf(Cpf.getText());
+	    		FuncionarioTelefone.setId_telefone(ids);
 	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+	    		new DaoFuncionarioTelefone().inserirFuncionarioTelefone(FuncionarioTelefone);
 	    	}
 		    
-		    if(new ShowAlert().sucessoAlert("Fornecedor editado com sucesso!")) {
+		    if(new ShowAlert().sucessoAlert("Funcionario editado com sucesso!")) {
 			    Stage stage = (Stage) btnBack.getScene().getWindow(); 
-			    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+			    ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
 				t.start(stage);
 		    }
 		}
@@ -389,12 +403,15 @@ public class ControllerViewFornecedor implements Initializable{
 		MaskFieldUtil.foneField(this.Telefone_fixo);
 		MaskFieldUtil.foneField(this.Telefone_celular);
         MaskFieldUtil.cepField(this.Cep);
-        MaskFieldUtil.cpfCnpjField(this.Cnpj);
+        MaskFieldUtil.cpfField(this.Cpf);
+		Cargo.getItems().setAll("Gerente", "Caixa", "RH"); 
+		Status.getItems().setAll("Ativo", "Inativo"); 
+
 	}
 	
 	public boolean validacaoCampos() {
-		if(Cnpj.getText().isEmpty() | Nome_empresa.getText().isEmpty() | Email.getText().isEmpty() | Inscricao_estadual.getText().isEmpty() |
-		   Inscricao_municipal.getText().isEmpty() | Cep.getText().isEmpty() | Numero.getText().isEmpty() |
+		if(Cpf.getText().isEmpty() | Nome.getText().isEmpty() | Email.getText().isEmpty() | Cargo.getSelectionModel().isEmpty() |
+				Salario.getText().isEmpty() | Data_nascimento.getValue() == null| Status.getSelectionModel().isEmpty() | Cep.getText().isEmpty() | Numero.getText().isEmpty() |
 		   Rua.getText().isEmpty() | Bairro.getText().isEmpty() | Cidade.getText().isEmpty() |
 		   Estado.getText().isEmpty()) {
 			

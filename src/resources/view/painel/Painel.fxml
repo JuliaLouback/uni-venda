@@ -74,7 +74,7 @@
                   <Image url="@../../img/worker.png" />
                </image>
             </ImageView>
-            <Button layoutX="28.0" layoutY="201.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Funcionários" textFill="#dc3545">
+            <Button fx:id="btnFuncionario" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrFuncionario" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Funcionários" textFill="#dc3545">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Image url="@../../img/box.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnCliente1" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrCliente" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Produtos" textFill="#dc3545">
+            <Button fx:id="btnProduto" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrProduto" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Produtos" textFill="#dc3545">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -102,7 +102,7 @@
                   <Image url="@../../img/grid.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnCliente2" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrCliente" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Categorias" textFill="#dc3545">
+            <Button fx:id="btnCategoria" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrCategoria" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Categorias" textFill="#dc3545">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -130,7 +130,7 @@
                   <Image url="@../../img/time.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnCliente11" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrCliente" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Caixas" textFill="#dc3545">
+            <Button layoutX="28.0" layoutY="201.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Caixas" textFill="#dc3545">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>

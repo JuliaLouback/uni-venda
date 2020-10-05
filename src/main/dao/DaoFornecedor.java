@@ -89,5 +89,31 @@ public class DaoFornecedor {
 		}
 		
 	}
+   
+   
+   public Fornecedor listarFornecedor(String Cnpj) {
+		
+		Fornecedor fornecedor = new Fornecedor();
+		String SQL_SELECIONA_FORNECEDOR_CNPJ = "SELECT * FROM Fornecedor WHERE Cnpj = '"+Cnpj+"';";
+
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_FORNECEDOR_CNPJ); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				fornecedor.setCnpj(rs.getString("CNPJ"));
+				fornecedor.setEmail(rs.getString("EMAIL"));
+				fornecedor.setNome_empresa(rs.getString("NOME_EMPRESA"));
+				fornecedor.setInscricao_estadual(rs.getLong("INSCRICAO_ESTADUAL"));
+				fornecedor.setInscricao_municipal(rs.getLong("INSCRICAO_MUNICIPAL"));
+				fornecedor.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		
+
+		return fornecedor;
+	}
 
 }

@@ -1,9 +1,11 @@
-package resources.view.cliente;
+package resources.view.produto;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.sun.javafx.fxml.LoadListener;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +13,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,76 +30,95 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import main.dao.DaoCliente;
-import main.entity.Cliente;
+import main.dao.DaoProduto;
+import main.entity.Produto;
 import resources.view.painel.ControllerViewPainel;
 
-public class ControllerViewListaCliente implements Initializable {
+public class ControllerViewListaProduto implements Initializable{
+
+    @FXML
+    private TableView<Produto> tabela;
+
+    @FXML
+    private TableColumn<Produto, Integer> Id_produto;
+
+    @FXML
+    private TableColumn<Produto, String> Nome;
+
+    @FXML
+    private TableColumn<Produto, String> Unidade_medida;
 
     @FXML
     private Button btnAdd;
+   
+	ArrayList<Produto> listas = new DaoProduto().listarProduto();
 
-    @FXML
-    private TableView<Cliente> tabela;
-
-    @FXML
-    private TableColumn<Cliente, String> Nome;
-
-    @FXML
-    private TableColumn<Cliente, String> Cpf;
-
-    @FXML
-    private TableColumn<Cliente, String> Email;
-    
-    ArrayList<Cliente> listas = new DaoCliente().listarCliente();
-
-    ObservableList<Cliente> lista = FXCollections.observableArrayList(listas);
-
-    @FXML
-    void AddCliente(ActionEvent event) {
-    	 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	     ControllerViewCliente t = new ControllerViewCliente();
-		 t.start(stage);
-    }
-
+    ObservableList<Produto> lista = FXCollections.observableArrayList(listas);
+    		
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		Nome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
-		Cpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));
-		Email.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		Nome.setCellValueFactory(new PropertyValueFactory<Produto, String>("Nome"));
+		Id_produto.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("Id_produto"));
+		Unidade_medida.setCellValueFactory(new PropertyValueFactory<Produto, String>("Unidade_medida"));
 		
 	    tabela.setItems(lista);
 	    tabela.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	    addButtonToTable();
 	    addButtonExcluir();
+		
 	}
+	
+	 @FXML
+	 void AddProduto(ActionEvent event) {
+		 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+	     ControllerViewProduto t = new ControllerViewProduto();
+		 t.start(stage);
+	 }
 
+	public void start(Stage primaryStage) {
+		try {
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/Produto/ListaProduto.fxml"));
+			Scene scene = new Scene(pane);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Lista Produtos - Uni Venda");
+			primaryStage.centerOnScreen();
+			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
+			primaryStage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	private void addButtonToTable() {
-        TableColumn<Cliente, Void> colBtn = new TableColumn("Editar");
+        TableColumn<Produto, Void> colBtn = new TableColumn("Editar");
 
-        Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactory = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
+        Callback<TableColumn<Produto, Void>, TableCell<Produto, Void>> cellFactory = new Callback<TableColumn<Produto, Void>, TableCell<Produto, Void>>() {
             @Override
-            public TableCell<Cliente, Void> call(final TableColumn<Cliente, Void> param) {
-                final TableCell<Cliente, Void> cell = new TableCell<Cliente, Void>() {
+            public TableCell<Produto, Void> call(final TableColumn<Produto, Void> param) {
+                final TableCell<Produto, Void> cell = new TableCell<Produto, Void>() {
 
                     private final Button btn = new Button("Editar");{
                         btn.setOnAction((ActionEvent event) -> {
                         	
-                            Cliente cliente = getTableView().getItems().get(getIndex());
+                            Produto Produto = getTableView().getItems().get(getIndex());
                             
                             try {
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/cliente/CadastroCliente.fxml"));
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/Produto/CadastroProduto.fxml"));
 	                            Parent root = loader.load();
 	
-	                            ControllerViewCliente controllerView = loader.getController();
-	                            controllerView.setLabelText(cliente);
+	                            ControllerViewProduto controllerView = loader.getController();
+	                            controllerView.setLabelText(Produto);
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Editar Cliente - Uni Venda");
-	                			stage.setResizable(false);
-	                			stage.centerOnScreen();
+	                            stage.setTitle("Editar Produto - Uni Venda");
+	                            stage.centerOnScreen();
 	                			stage.getIcons().add(new Image("/resources/img/money.png"));
+	                			stage.setResizable(false);
 	                            stage.show();
 	                            
 	                            Stage stages = (Stage) btn.getScene().getWindow();
@@ -131,31 +158,32 @@ public class ControllerViewListaCliente implements Initializable {
     }
 	
 	private void addButtonExcluir() {
-        TableColumn<Cliente, Void> colBtn = new TableColumn("Excluir");
+        TableColumn<Produto, Void> colBtn = new TableColumn("Excluir");
 
-        Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactory = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
+        Callback<TableColumn<Produto, Void>, TableCell<Produto, Void>> cellFactory = new Callback<TableColumn<Produto, Void>, TableCell<Produto, Void>>() {
             @Override
-            public TableCell<Cliente, Void> call(final TableColumn<Cliente, Void> param) {
-                final TableCell<Cliente, Void> cell = new TableCell<Cliente, Void>() {
+            public TableCell<Produto, Void> call(final TableColumn<Produto, Void> param) {
+                final TableCell<Produto, Void> cell = new TableCell<Produto, Void>() {
 
                     private final Button btn = new Button("Excluir");{
                         btn.setOnAction((ActionEvent event) -> {
                         	
-                            Cliente cliente = getTableView().getItems().get(getIndex());
+                            Produto Produto = getTableView().getItems().get(getIndex());
                             
                             try {
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/cliente/ExcluirCliente.fxml"));
+	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/Produto/ExcluirProduto.fxml"));
 	                            Parent root = loader.load();
 	
-	                            ControllerViewExcluirCliente controllerView = loader.getController();
-	                            controllerView.setLabelText(cliente);
+	                            ControllerViewExcluirProduto controllerView = loader.getController();
+	                            controllerView.setLabelText(Produto);
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Excluir Cliente - Uni Venda");
-	                			stage.setResizable(false);
-	                			stage.centerOnScreen();
+	                            stage.setTitle("Excluir Produto - Uni Venda");
+	                            stage.centerOnScreen();
 	                			stage.getIcons().add(new Image("/resources/img/money.png"));
+	                			stage.setResizable(false);
+
 	                            stage.show();
 	                            
 	                            Stage stages = (Stage) btn.getScene().getWindow();
@@ -198,19 +226,5 @@ public class ControllerViewListaCliente implements Initializable {
 		 t.start(stage);
 	 }
 
-	public void start(Stage primaryStage) {
-		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/cliente/ListaCliente.fxml"));
-			Scene scene = new Scene(pane);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Lista Clientes - Uni Venda");
-			primaryStage.centerOnScreen();
-			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
-			primaryStage.show();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
 }
+

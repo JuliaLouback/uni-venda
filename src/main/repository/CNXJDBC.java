@@ -8,11 +8,7 @@ public class CNXJDBC {
 		String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=uni_venda;";
 		
 		try {
-			
-			//Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-			return DriverManager.getConnection(connectionUrl,"sa", "juliaerikajulio");
-			
-			
+			return DriverManager.getConnection(connectionUrl,"sa", "");
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}

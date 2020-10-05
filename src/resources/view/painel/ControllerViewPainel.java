@@ -10,18 +10,30 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import resources.view.categoria.ControllerViewListaCategoria;
 import resources.view.cliente.ControllerViewCliente;
 import resources.view.cliente.ControllerViewListaCliente;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
+import resources.view.funcionario.ControllerViewListaFuncionario;
+import resources.view.produto.ControllerViewListaProduto;
 
 public class ControllerViewPainel {
 
     @FXML
     private Button btnFornecedor;
 
+    @FXML
+    private Button btnFuncionario;
 
     @FXML
     private Button btnCliente;
+    
+    @FXML
+    private Button btnProduto;
+
+    @FXML
+    private Button btnCategoria;
+
     
     @FXML
     void btnIrFornecedor(ActionEvent event) {
@@ -49,6 +61,27 @@ public class ControllerViewPainel {
     void btnIrCliente(ActionEvent event) {
 		Stage stage = (Stage) btnCliente.getScene().getWindow(); 
 	    ControllerViewListaCliente t = new ControllerViewListaCliente();
+		t.start(stage);
+    }
+	
+	@FXML
+    void btnIrFuncionario(ActionEvent event) {
+		Stage stage = (Stage) btnFuncionario.getScene().getWindow(); 
+	    ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
+		t.start(stage);
+    }
+	
+	@FXML
+    void btnIrProduto(ActionEvent event) {
+		Stage stage = (Stage) btnProduto.getScene().getWindow(); 
+	    ControllerViewListaProduto t = new ControllerViewListaProduto();
+		t.start(stage);
+    }
+	
+	@FXML
+    void btnIrCategoria(ActionEvent event) {
+		Stage stage = (Stage) btnCategoria.getScene().getWindow(); 
+	    ControllerViewListaCategoria t = new ControllerViewListaCategoria();
 		t.start(stage);
     }
 }
