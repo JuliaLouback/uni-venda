@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import main.entity.Cliente;
 import main.repository.CNXJDBC;
+import main.util.ShowAlert;
 
 public class DaoCliente {
 
@@ -21,16 +22,19 @@ public class DaoCliente {
 		
 	private PreparedStatement pst = null;
 
-	public void inserirCliente(Cliente cliente) {
+	public boolean inserirCliente(Cliente cliente) {
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_CLIENTE);) {
 			pst.setString(1, cliente.getCpf());
 			pst.setString(2, cliente.getNome());
 			pst.setString(3, cliente.getEmail());
 			pst.executeUpdate();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println(e.getErrorCode());
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("CPF já cadastrado!");
 		}
+		
+		return false;
 	}
 	
 	public ArrayList<Cliente> listarCliente() {
@@ -47,7 +51,7 @@ public class DaoCliente {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statement" + e.toString());
+			System.out.println("Erro ao executar o Statement" + e.toString());			
 		} catch (Exception ex) {
 			System.out.println(ex.toString());
 		}
@@ -56,7 +60,7 @@ public class DaoCliente {
 		return listaClientes;
 	}
 	
-	public void alterarCliente(Cliente cliente) {
+	public boolean alterarCliente(Cliente cliente) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_CLIENTE);) {
 			pst.setString(1, cliente.getNome());
@@ -64,21 +68,28 @@ public class DaoCliente {
 			pst.setString(3, cliente.getCpf());
 			
 			pst.execute();
+			
+			return true;
+
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("CPF já cadastrado!");
 		}
 		
+		return false;
 	}
 	
-   public void excluirCliente(String cpf) {
+   public boolean excluirCliente(String cpf) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_CLIENTE);) {
 			pst.setString(1, cpf);
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("Cliente não pode ser excluído porque esta associado a uma ou várias Vendas!");
 		}
 		
+		return false;
 	}
 
 }

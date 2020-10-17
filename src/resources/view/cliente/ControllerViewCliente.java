@@ -22,7 +22,10 @@ import main.entity.Fornecedor;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
+import resources.view.painel.ControllerViewPainelCaixa;
+import resources.view.painel.ControllerViewPainelRH;
 
 public class ControllerViewCliente implements Initializable {
 
@@ -55,9 +58,19 @@ public class ControllerViewCliente implements Initializable {
 
     @FXML
     void VoltarPainel(ActionEvent event) {
-		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	     ControllerViewPainel t = new ControllerViewPainel();
-		 t.start(stage);
+    	
+    	String cargo = System.getProperty("Cargo");
+    	
+    	if(cargo.equals("Caixa")) {
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewPainelCaixa t = new ControllerViewPainelCaixa();
+			t.start(stage);
+		}
+		else {
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewPainel t = new ControllerViewPainel();
+			t.start(stage);
+		}
     }
 
     @FXML
@@ -83,13 +96,14 @@ public class ControllerViewCliente implements Initializable {
 			cliente.setEmail(Email.getText());
 			cliente.setNome(Nome.getText());
 			
-	    	new DaoCliente().inserirCliente(cliente);
+	    	if(new DaoCliente().inserirCliente(cliente)) {
 
-	    	new ShowAlert().sucessoAlert("Cliente adicionado com sucesso!"); 
-	    	
-	    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	        ControllerViewListaCliente t = new ControllerViewListaCliente();
-		    t.start(stage);
+		    	new ShowAlert().sucessoAlert("Cliente adicionado com sucesso!"); 
+		    	
+		    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		        ControllerViewListaCliente t = new ControllerViewListaCliente();
+			    t.start(stage);
+	    	}
 		}
 	}
 
@@ -109,7 +123,7 @@ public class ControllerViewCliente implements Initializable {
 			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/cliente/CadastroCliente.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
+			primaryStage.setTitle("Cadastro Cliente - Uni Venda");
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
@@ -137,17 +151,30 @@ public class ControllerViewCliente implements Initializable {
 			cliente.setEmail(Email.getText());
 			cliente.setNome(Nome.getText());
 			
-	    	new DaoCliente().alterarCliente(cliente);
+	    	if(new DaoCliente().alterarCliente(cliente)) {
 
-	    	new ShowAlert().sucessoAlert("Cliente adicionado com sucesso!"); 
-	    	
-	    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	        ControllerViewListaCliente t = new ControllerViewListaCliente();
-		    t.start(stage);
+		    	if(new ShowAlert().sucessoAlert("Cliente editado com sucesso!")) { 
+		    	
+			    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
+			        ControllerViewListaCliente t = new ControllerViewListaCliente();
+				    t.start(stage);
+		    	}
+	    	}
 		}
 	}
 	
+	 @FXML
+     void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
 	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
    
 
 }

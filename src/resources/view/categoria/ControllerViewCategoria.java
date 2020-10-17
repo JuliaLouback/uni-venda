@@ -22,6 +22,7 @@ import main.entity.Fornecedor;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewCategoria implements Initializable {
@@ -76,13 +77,14 @@ public class ControllerViewCategoria implements Initializable {
 			
 			Categoria.setNome(Nome.getText());
 			
-	    	new DaoCategoria().inserirCategoria(Categoria);
+	    	if(new DaoCategoria().inserirCategoria(Categoria)) {
 
-	    	new ShowAlert().sucessoAlert("Categoria adicionado com sucesso!"); 
-	    	
-	    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
- 	        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
-		    t.start(stage);
+		    	new ShowAlert().sucessoAlert("Categoria adicionado com sucesso!"); 
+		    	
+		    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
+	 	        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
+			    t.start(stage);
+	    	}
 		}
 	}
 
@@ -102,7 +104,7 @@ public class ControllerViewCategoria implements Initializable {
 			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/Categoria/CadastroCategoria.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Cadastro Fornecedor - Uni Venda");
+			primaryStage.setTitle("Cadastro Categoria - Uni Venda");
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
@@ -128,17 +130,28 @@ public class ControllerViewCategoria implements Initializable {
 			Categoria.setNome(Nome.getText());
 			Categoria.setId_categoria(Categorias.getId_categoria());
 			
-	    	new DaoCategoria().alterarCategoria(Categoria);
+	    	if(new DaoCategoria().alterarCategoria(Categoria)) {
 
-	    	new ShowAlert().sucessoAlert("Categoria adicionado com sucesso!"); 
-	    	
-	    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
-		    t.start(stage);
+		    	if(new ShowAlert().sucessoAlert("Categoria editada com sucesso!")) { 
+		    	
+			    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
+			        ControllerViewListaCategoria t = new ControllerViewListaCategoria();
+				    t.start(stage);
+		    	}
+	    	}
 		}
 	}
 	
+	 @FXML
+     void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
 	
-   
-
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+     }
 }

@@ -40,6 +40,7 @@ import main.entity.Produto;
 import main.entity.Fornecedor;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewProduto implements Initializable{
@@ -141,8 +142,7 @@ public class ControllerViewProduto implements Initializable{
 		 this.Unidade_medida.setValue(Produto.getUnidade_medida());
 		 this.Fornecedor.setValue(new DaoFornecedor().listarFornecedor(Produto.getFornecedor_Cnpj()));
 		 this.Categoria.setValue(new DaoCategoria().listarCategoria(Produto.getId_categoria()));
-		 
-		 
+		  
 	  }
 	 
 	 public void adicionar() {
@@ -170,14 +170,13 @@ public class ControllerViewProduto implements Initializable{
 	    	Produto.setId_categoria(cat.getId_categoria());
 
 
-	    	new DaoProduto().inserirProduto(Produto);
-	    	
-	    	
-	    	new ShowAlert().sucessoAlert("Produto adicionado com sucesso!"); 
-	    	
-	    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-		     ControllerViewListaProduto t = new ControllerViewListaProduto();
-			 t.start(stage);
+	    	if(new DaoProduto().inserirProduto(Produto)) {
+	    
+	    		new ShowAlert().sucessoAlert("Produto adicionado com sucesso!"); 
+		    	Stage stage = (Stage) btnBack.getScene().getWindow(); 
+			    ControllerViewListaProduto t = new ControllerViewListaProduto();
+				t.start(stage);
+	    	}
 		}
 	
 	 }
@@ -254,4 +253,17 @@ public class ControllerViewProduto implements Initializable{
 	     ControllerViewPainel t = new ControllerViewPainel();
 		 t.start(stage);
 	 }
+	 
+	 @FXML
+     void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
 }

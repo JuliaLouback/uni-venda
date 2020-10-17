@@ -39,6 +39,7 @@ import main.entity.FornecedorTelefone;
 import main.entity.Telefone;
 import main.util.MaskFieldUtil;
 import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewFornecedor implements Initializable{
@@ -199,43 +200,43 @@ public class ControllerViewFornecedor implements Initializable{
 	    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
 	    	fornecedor.setId_endereco(id);
 	    	
-	    	new DaoFornecedor().inserirFornecedor(fornecedor);
+	    	if(new DaoFornecedor().inserirFornecedor(fornecedor)) {
 	    	
-	    	if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
-	    		Telefone telefoneFixo = new Telefone();
-	    		
-	    		telefoneFixo.setTelefones(Telefone_fixo.getText());
-	    		telefoneFixo.setTipo("Fixo");
-	    		
-	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
-	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
-	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+		    	if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
+		    		Telefone telefoneFixo = new Telefone();
+		    		
+		    		telefoneFixo.setTelefones(Telefone_fixo.getText());
+		    		telefoneFixo.setTipo("Fixo");
+		    		
+		    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
+		    		
+		    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+		    		fornecedorTelefone.setCnpj(Cnpj.getText());
+		    		fornecedorTelefone.setId_telefone(ids);
+		    		
+		    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+		    	}
+		    	
+		    	if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
+		    		Telefone telefoneCelular = new Telefone();
+		    		
+		    		telefoneCelular.setTelefones(Telefone_celular.getText());
+		    		telefoneCelular.setTipo("Celular");
+		    		
+		    		long ids = new DaoTelefone().inserirTelefone(telefoneCelular);
+		    		
+		    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+		    		fornecedorTelefone.setCnpj(Cnpj.getText());
+		    		fornecedorTelefone.setId_telefone(ids);
+		    		
+		    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+		    	}
+		    	
+		    	new ShowAlert().sucessoAlert("Fornecedor adicionado com sucesso!"); 
+		    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+			     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+				 t.start(stage);
 	    	}
-	    	
-	    	if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
-	    		Telefone telefoneCelular = new Telefone();
-	    		
-	    		telefoneCelular.setTelefones(Telefone_celular.getText());
-	    		telefoneCelular.setTipo("Celular");
-	    		
-	    		long ids = new DaoTelefone().inserirTelefone(telefoneCelular);
-	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
-	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
-	    	}
-	    	
-	    	new ShowAlert().sucessoAlert("Fornecedor adicionado com sucesso!"); 
-	    	
-	    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-		     ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
-			 t.start(stage);
 		}
 	
 	 }
@@ -251,82 +252,83 @@ public class ControllerViewFornecedor implements Initializable{
 	    	fornecedor.setInscricao_municipal(Long.parseLong(Inscricao_municipal.getText()));
 	    	fornecedor.setInscricao_estadual(Long.parseLong(Inscricao_estadual.getText()));
 	    	
-	    	new DaoFornecedor().alterarFornecedor(fornecedor);
+	    	if(new DaoFornecedor().alterarFornecedor(fornecedor)) {
 	    	
-	        Endereco endereco = new Endereco();
-	    	
-	    	endereco.setCep(Cep.getText());
-	    	endereco.setNumero(Integer.valueOf(Numero.getText()));
-	    	endereco.setRua(Rua.getText());
-	    	endereco.setBairro(Bairro.getText());
-	    	endereco.setCidade(Cidade.getText());
-	    	endereco.setEstado(Estado.getText());
-	    	endereco.setId_endereco(fornecedores.getId_endereco());
+		        Endereco endereco = new Endereco();
 		    	
-	    	new DaoEndereco().alterarEndereco(endereco);
+		    	endereco.setCep(Cep.getText());
+		    	endereco.setNumero(Integer.valueOf(Numero.getText()));
+		    	endereco.setRua(Rua.getText());
+		    	endereco.setBairro(Bairro.getText());
+		    	endereco.setCidade(Cidade.getText());
+		    	endereco.setEstado(Estado.getText());
+		    	endereco.setId_endereco(fornecedores.getId_endereco());
+			    	
+		    	new DaoEndereco().alterarEndereco(endereco); 
 	    	
-	    	if(listaTelefoneTipo.contains("Fixo")) {
-	    		listaTelefone.forEach(action -> {
-	    			
-	    			if(action.getTipo().equals("Fixo")) {
-		    			Telefone telefoneFixo = new Telefone();
-		        		
-		        		telefoneFixo.setTelefones(Telefone_fixo.getText());
-		        		telefoneFixo.setId_telefone(action.getId_telefone());
-		        		
-		        		new DaoTelefone().alterarTelefone(telefoneFixo);
-	    			}
-	    		});
-	    		
-	    	} else if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
-	    		Telefone telefoneFixo = new Telefone();
-	    		
-	    		telefoneFixo.setTelefones(Telefone_fixo.getText());
-	    		telefoneFixo.setTipo("Fixo");
-	    		
-	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
-	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
-	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
-	    	}
-	    	
-		    if(listaTelefoneTipo.contains("Celular")) {
-	    		
-	    		listaTelefone.forEach(action -> {
-	    			
-	    			if(action.getTipo().equals("Celular")) {
-		    			Telefone telefoneCelular = new Telefone();
-		        		
-		    			telefoneCelular.setTelefones(Telefone_celular.getText());
-		    			telefoneCelular.setId_telefone(action.getId_telefone());
+		    	if(listaTelefoneTipo.contains("Fixo")) {
+		    		listaTelefone.forEach(action -> {
 		    			
-		    			new DaoTelefone().alterarTelefone(telefoneCelular);
-	    			}
-	    		});
-	    		
-	    	} else if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
-	    		Telefone telefoneFixo = new Telefone();
-	    		
-	    		telefoneFixo.setTelefones(Telefone_celular.getText());
-	    		telefoneFixo.setTipo("Celular");
-	    		
-	    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
-	    		
-	    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
-	    		fornecedorTelefone.setCnpj(Cnpj.getText());
-	    		fornecedorTelefone.setId_telefone(ids);
-	    		
-	    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+		    			if(action.getTipo().equals("Fixo")) {
+			    			Telefone telefoneFixo = new Telefone();
+			        		
+			        		telefoneFixo.setTelefones(Telefone_fixo.getText());
+			        		telefoneFixo.setId_telefone(action.getId_telefone());
+			        		
+			        		new DaoTelefone().alterarTelefone(telefoneFixo);
+		    			}
+		    		});
+		    		
+		    	} else if(Telefone_fixo.getText() != null && !Telefone_fixo.getText().isEmpty()) {
+		    		Telefone telefoneFixo = new Telefone();
+		    		
+		    		telefoneFixo.setTelefones(Telefone_fixo.getText());
+		    		telefoneFixo.setTipo("Fixo");
+		    		
+		    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
+		    		
+		    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+		    		fornecedorTelefone.setCnpj(Cnpj.getText());
+		    		fornecedorTelefone.setId_telefone(ids);
+		    		
+		    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+		    	}
+		    	
+			    if(listaTelefoneTipo.contains("Celular")) {
+		    		
+		    		listaTelefone.forEach(action -> {
+		    			
+		    			if(action.getTipo().equals("Celular")) {
+			    			Telefone telefoneCelular = new Telefone();
+			        		
+			    			telefoneCelular.setTelefones(Telefone_celular.getText());
+			    			telefoneCelular.setId_telefone(action.getId_telefone());
+			    			
+			    			new DaoTelefone().alterarTelefone(telefoneCelular);
+		    			}
+		    		});
+		    		
+		    	} else if(Telefone_celular.getText() != null && !Telefone_celular.getText().isEmpty()) {
+		    		Telefone telefoneFixo = new Telefone();
+		    		
+		    		telefoneFixo.setTelefones(Telefone_celular.getText());
+		    		telefoneFixo.setTipo("Celular");
+		    		
+		    		long ids = new DaoTelefone().inserirTelefone(telefoneFixo);
+		    		
+		    		FornecedorTelefone fornecedorTelefone = new FornecedorTelefone();
+		    		fornecedorTelefone.setCnpj(Cnpj.getText());
+		    		fornecedorTelefone.setId_telefone(ids);
+		    		
+		    		new DaoFornecedorTelefone().inserirFornecedorTelefone(fornecedorTelefone);
+		    	}
+			    
+			    if(new ShowAlert().sucessoAlert("Fornecedor editado com sucesso!")) {
+				    Stage stage = (Stage) btnBack.getScene().getWindow(); 
+				    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+					t.start(stage);
+			    }
 	    	}
-		    
-		    if(new ShowAlert().sucessoAlert("Fornecedor editado com sucesso!")) {
-			    Stage stage = (Stage) btnBack.getScene().getWindow(); 
-			    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
-				t.start(stage);
-		    }
 		}
 	 }
 	 
@@ -412,4 +414,17 @@ public class ControllerViewFornecedor implements Initializable{
 	     ControllerViewPainel t = new ControllerViewPainel();
 		 t.start(stage);
 	 }
+	 
+	 @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
 }

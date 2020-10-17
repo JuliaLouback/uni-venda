@@ -32,7 +32,11 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.dao.DaoFuncionario;
 import main.entity.Funcionario;
+import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
+import resources.view.painel.ControllerViewPainelCaixa;
+import resources.view.painel.ControllerViewPainelRH;
 
 public class ControllerViewListaFuncionario implements Initializable{
 
@@ -81,7 +85,7 @@ public class ControllerViewListaFuncionario implements Initializable{
 			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/Funcionario/ListaFuncionario.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Lista Funcionarioes - Uni Venda");
+			primaryStage.setTitle("Lista Funcionários - Uni Venda");
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
 			primaryStage.show();
@@ -115,7 +119,7 @@ public class ControllerViewListaFuncionario implements Initializable{
 	                    
 	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(root));
-	                            stage.setTitle("Editar Funcionario - Uni Venda");
+	                            stage.setTitle("Editar Funcionário - Uni Venda");
 	                            stage.centerOnScreen();
 	                			stage.getIcons().add(new Image("/resources/img/money.png"));
 	                			stage.setResizable(false);
@@ -221,10 +225,32 @@ public class ControllerViewListaFuncionario implements Initializable{
 	
 	 @FXML
 	 void VoltarPainel(ActionEvent event) {
-		 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	     ControllerViewPainel t = new ControllerViewPainel();
-		 t.start(stage);
+		 String cargo = System.getProperty("Cargo");
+	    	
+		 if(cargo.equals("RH")) {
+			Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+			ControllerViewPainelRH t = new ControllerViewPainelRH();
+			t.start(stage);
+		 }
+		 else {
+			Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+			ControllerViewPainel t = new ControllerViewPainel();
+			t.start(stage);
+		}
 	 }
+	 
+	 @FXML
+     void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
 
 }
 

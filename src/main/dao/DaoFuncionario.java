@@ -9,21 +9,22 @@ import java.util.ArrayList;
 
 import main.entity.Funcionario;
 import main.repository.CNXJDBC;
+import main.util.ShowAlert;
 
 public class DaoFuncionario {
 	private final String SQL_INSERE_FUNCIONARIO = "INSERT INTO Funcionario (Cpf,Nome,Email,Cargo,Data_nascimento,Status,Salario,"
-			+ "Endereco_Id_endereco) VALUES (?,?,?,?,?,?,?,?);";
+			+ "Endereco_Id_endereco, Senha) VALUES (?,?,?,?,?,?,?,?,?);";
 	
 	private final String SQL_SELECIONA_FUNCIONARIO = "SELECT * FROM Funcionario";
 	
-	private final String SQL_ALTERA_FUNCIONARIO = "UPDATE Funcionario SET Nome=?, Email = ?, Cargo = ?, Data_nascimento = ?, Status = ?, Salario = ?"
+	private final String SQL_ALTERA_FUNCIONARIO = "UPDATE Funcionario SET Nome=?, Email = ?, Cargo = ?, Data_nascimento = ?, Status = ?, Salario = ?, Senha = ?"
 			+ "  WHERE Cpf = ?;";
 	
 	private final String SQL_EXCLUI_FUNCIONARIO = "DELETE FROM Funcionario  WHERE Cpf = ?;";
 		
 	private PreparedStatement pst = null;
 
-	public void inserirFuncionario(Funcionario funcionario) {
+	public boolean inserirFuncionario(Funcionario funcionario) {
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_FUNCIONARIO);) {
 			pst.setString(1, funcionario.getCpf());
 			pst.setString(2, funcionario.getNome());
@@ -33,11 +34,15 @@ public class DaoFuncionario {
 			pst.setString(6, funcionario.getStatus());
 			pst.setFloat(7, funcionario.getSalario());
 			pst.setString(8, Long.toString(funcionario.getId_endereco()));
+			pst.setString(9, funcionario.getSenha());
 			pst.executeUpdate();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println(e.getErrorCode());
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("CPF já cadastrado!");
 		}
+		
+		return false;
 	}
 	
 	public ArrayList<Funcionario> listarFuncionarios() {
@@ -55,6 +60,7 @@ public class DaoFuncionario {
 				funcionario.setStatus(rs.getString("STATUS"));
 				funcionario.setSalario(rs.getFloat("SALARIO"));
 				funcionario.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
+				funcionario.setSenha(rs.getString("SENHA"));
 				listaFuncionarios.add(funcionario);
 			}
 
@@ -68,7 +74,7 @@ public class DaoFuncionario {
 		return listaFuncionarios;
 	}
 	
-	public void alterarFuncionario(Funcionario funcionario) {
+	public boolean alterarFuncionario(Funcionario funcionario) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_FUNCIONARIO);) {
 			pst.setString(1, funcionario.getNome());
@@ -77,22 +83,30 @@ public class DaoFuncionario {
 			pst.setDate(4, Date.valueOf(funcionario.getData_nascimento()));
 			pst.setString(5, funcionario.getStatus());
 			pst.setFloat(6, funcionario.getSalario());
-			pst.setString(7, funcionario.getCpf());
+			pst.setString(7, funcionario.getSenha());
+			pst.setString(8, funcionario.getCpf());
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("CPF já cadastrado!");
 		}
 		
+		return false;
 	}
 	
-   public void excluirFuncionario(String cpf) {
+   public boolean excluirFuncionario(String cpf) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_FUNCIONARIO);) {
 			pst.setString(1, cpf);
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+			new ShowAlert().erroAlert("Funcionário não pode ser excluído porque está associado a uma ou várias vendas!");
 		}
+		
+		return false;
 		
 	}
 }

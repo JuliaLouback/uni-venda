@@ -15,6 +15,7 @@ import main.entity.Endereco;
 import main.entity.Fornecedor;
 import main.entity.Telefone;
 import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewExcluirFornecedor {
@@ -75,20 +76,21 @@ public class ControllerViewExcluirFornecedor {
 
     @FXML
     void btnExcluir(ActionEvent event) {
+    	
     	lista.forEach(action -> {
 	    	new DaoFornecedorTelefone().excluirFornecedorTelefone(action);
 	    	new DaoTelefone().excluiTelefone(action);
 	    });
     	
-       	new DaoFornecedor().excluirFornecedor(fornecedores.getCnpj());
-    	new DaoEndereco().excluirEndereco(fornecedores.getId_endereco());
-    	
-    	new ShowAlert().sucessoAlert("Fornecedor excluido com sucesso!");
-    	
-		Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
-		t.start(stage);
- 
+       	if(new DaoFornecedor().excluirFornecedor(fornecedores.getCnpj())){
+	    	new DaoEndereco().excluirEndereco(fornecedores.getId_endereco());
+	    	
+	    	new ShowAlert().sucessoAlert("Fornecedor excluido com sucesso!");
+	    	
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewListaFornecedor t = new ControllerViewListaFornecedor();
+			t.start(stage);
+       	}
     }
 
     public void setLabelText(Fornecedor fornecedor){
@@ -130,4 +132,17 @@ public class ControllerViewExcluirFornecedor {
 	     ControllerViewPainel t = new ControllerViewPainel();
 		 t.start(stage);
 	 }
+    
+    @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
 }

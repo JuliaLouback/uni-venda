@@ -32,6 +32,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.dao.DaoFornecedor;
 import main.entity.Fornecedor;
+import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewListaFornecedor implements Initializable{
@@ -225,6 +227,19 @@ public class ControllerViewListaFornecedor implements Initializable{
 	     ControllerViewPainel t = new ControllerViewPainel();
 		 t.start(stage);
 	 }
+	 
+	 @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
 
 }
 

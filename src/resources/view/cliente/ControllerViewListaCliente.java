@@ -24,7 +24,10 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.dao.DaoCliente;
 import main.entity.Cliente;
+import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
+import resources.view.painel.ControllerViewPainelCaixa;
 
 public class ControllerViewListaCliente implements Initializable {
 
@@ -193,9 +196,18 @@ public class ControllerViewListaCliente implements Initializable {
 	
 	 @FXML
 	 void VoltarPainel(ActionEvent event) {
-		 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	     ControllerViewPainel t = new ControllerViewPainel();
-		 t.start(stage);
+		 String cargo = System.getProperty("Cargo");
+	    	
+	    if(cargo.equals("Caixa")) {
+			Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+			ControllerViewPainelCaixa t = new ControllerViewPainelCaixa();
+			t.start(stage);
+		}
+		else {
+			Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+			ControllerViewPainel t = new ControllerViewPainel();
+			t.start(stage);
+		}
 	 }
 
 	public void start(Stage primaryStage) {
@@ -210,7 +222,19 @@ public class ControllerViewListaCliente implements Initializable {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
+	
+	@FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+    }
 }

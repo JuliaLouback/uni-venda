@@ -95,7 +95,10 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#VoltarPainel" text="Inicial" />
                </items></Menu>
-          <Menu mnemonicParsing="false" text="Sair" />
+          <Menu mnemonicParsing="false" text="Sair">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Sair" text="Logout" />
+               </items></Menu>
         </menus>
          <opaqueInsets>
             <Insets />

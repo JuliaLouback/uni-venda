@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import main.entity.Fornecedor;
 import main.repository.CNXJDBC;
+import main.util.ShowAlert;
 
 public class DaoFornecedor {
 
@@ -23,7 +24,7 @@ public class DaoFornecedor {
 		
 	private PreparedStatement pst = null;
 
-	public void inserirFornecedor(Fornecedor fornecedor) {
+	public boolean inserirFornecedor(Fornecedor fornecedor) {
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_FORNECEDOR);) {
 			pst.setString(1, fornecedor.getCnpj());
 			pst.setString(2, fornecedor.getNome_empresa());
@@ -32,10 +33,13 @@ public class DaoFornecedor {
 			pst.setString(5, Long.toString(fornecedor.getInscricao_municipal()));
 			pst.setString(6, Long.toString(fornecedor.getId_endereco()));
 			pst.executeUpdate();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println(e.getErrorCode());
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("CNPJ já cadastrado!");
 		}
+		
+		return false;
 	}
 	
 	public ArrayList<Fornecedor> listarFornecedores() {
@@ -64,7 +68,7 @@ public class DaoFornecedor {
 		return listaFornecedores;
 	}
 	
-	public void alterarFornecedor(Fornecedor fornecedor) {
+	public boolean alterarFornecedor(Fornecedor fornecedor) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_FORNECEDOR);) {
 			pst.setString(1, fornecedor.getNome_empresa());
@@ -73,21 +77,27 @@ public class DaoFornecedor {
 			pst.setLong(4, fornecedor.getInscricao_municipal());
 			pst.setString(5, fornecedor.getCnpj());
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("CNPJ já cadastrado!");
 		}
 		
+		return false;
 	}
 	
-   public void excluirFornecedor(String cnpj) {
+   public boolean excluirFornecedor(String cnpj) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_FORNECEDOR);) {
 			pst.setString(1, cnpj);
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Erro ao executar o Statment " + e.toString());
 		}
 		
+		return false;
 	}
    
    

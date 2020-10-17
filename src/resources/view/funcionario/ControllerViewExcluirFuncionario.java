@@ -19,7 +19,10 @@ import main.entity.Endereco;
 import main.entity.Funcionario;
 import main.entity.Telefone;
 import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
+import resources.view.painel.ControllerViewPainelCaixa;
+import resources.view.painel.ControllerViewPainelRH;
 
 public class ControllerViewExcluirFuncionario {
 
@@ -97,14 +100,15 @@ public class ControllerViewExcluirFuncionario {
 	    	new DaoTelefone().excluiTelefone(action);
 	    });
     	
-       	new DaoFuncionario().excluirFuncionario(Funcionarios.getCpf());
-    	new DaoEndereco().excluirEndereco(Funcionarios.getId_endereco());
-    	
-    	new ShowAlert().sucessoAlert("Funcionario excluido com sucesso!");
-    	
-		Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	    ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
-		t.start(stage);
+       	if(new DaoFuncionario().excluirFuncionario(Funcionarios.getCpf())) {
+	    	new DaoEndereco().excluirEndereco(Funcionarios.getId_endereco());
+	    	
+	    	new ShowAlert().sucessoAlert("Funcionário excluído com sucesso!");
+	    	
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
+			t.start(stage);
+       	}
  
     }
 
@@ -135,6 +139,8 @@ public class ControllerViewExcluirFuncionario {
 	     this.Bairro.setText(endereco.getBairro());
 	     this.Cidade.setText(endereco.getCidade());
 	     this.Estado.setText(endereco.getEstado());
+	     this.Telefone_celular.setText("");
+	     this.Telefone_fixo.setText("");
 	     
 	     
 	     lista = new DaoFuncionarioTelefone().listarFuncionarioTelefone(funcionario.getCpf());
@@ -154,8 +160,32 @@ public class ControllerViewExcluirFuncionario {
     
     @FXML
 	 void VoltarPainel(ActionEvent event) {
-		 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	     ControllerViewPainel t = new ControllerViewPainel();
-		 t.start(stage);
+    	
+    	String cargo = System.getProperty("Cargo");
+    	
+    	if(cargo.equals("RH")) {
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewPainelRH t = new ControllerViewPainelRH();
+			t.start(stage);
+		}
+		else {
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewPainel t = new ControllerViewPainel();
+			t.start(stage);
+		}
 	 }
+    
+    @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+   }
+    
 }

@@ -16,6 +16,14 @@ public class ShowAlert {
 		alert.showAndWait();
 	}
 	
+	public void validacao() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Atenção");
+		alert.setHeaderText(null);
+		alert.setContentText("Preencha e-mail e senha!");
+		alert.showAndWait();
+	}
+	
 	public boolean sucessoAlert(String mensagem) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Sucesso");
@@ -30,6 +38,22 @@ public class ShowAlert {
 		} 
 		
 		return false;
+	}
+	
+	public void erroAlert(String message) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Erro");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+	
+	public void informationAlert(String message) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Sucesso");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
 	}
 	
 }

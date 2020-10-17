@@ -14,6 +14,7 @@ import main.dao.DaoProduto;
 import main.entity.Produto;
 import main.entity.Telefone;
 import main.util.ShowAlert;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewExcluirProduto {
@@ -67,13 +68,14 @@ public class ControllerViewExcluirProduto {
     @FXML
     void btnExcluir(ActionEvent event) {
     	
-       	new DaoProduto().excluirProduto(Produtos.getId_produto());
+       	if(new DaoProduto().excluirProduto(Produtos.getId_produto())) {
     	
-    	new ShowAlert().sucessoAlert("Produto excluido com sucesso!");
-    	
-		Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	    ControllerViewListaProduto t = new ControllerViewListaProduto();
-		t.start(stage);
+	    	new ShowAlert().sucessoAlert("Produto excluído com sucesso!");
+	    	
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewListaProduto t = new ControllerViewListaProduto();
+			t.start(stage);
+       	}
  
     }
 
@@ -99,4 +101,17 @@ public class ControllerViewExcluirProduto {
 	     ControllerViewPainel t = new ControllerViewPainel();
 		 t.start(stage);
 	 }
+    
+    @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
+   }
 }

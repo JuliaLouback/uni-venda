@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import main.entity.Produto;
 import main.repository.CNXJDBC;
+import main.util.ShowAlert;
 
 public class DaoProduto {
 
@@ -23,7 +24,7 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 		
 	private PreparedStatement pst = null;
 
-	public void inserirProduto(Produto Produto) {
+	public boolean inserirProduto(Produto Produto) {
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_PRODUTO);) {
 			pst.setLong(1, Produto.getId_produto());
 			pst.setString(2, Produto.getNome());
@@ -38,10 +39,13 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 			pst.setInt(11, Produto.getEstoque_atual());
 			
 			pst.executeUpdate();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println(e.getErrorCode());
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("Produto já cadastrado!");
 		}
+		
+		return false;
 	}
 	
 	public ArrayList<Produto> listarProduto() {
@@ -76,7 +80,7 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 		return listaProdutos;
 	}
 	
-	public void alterarProduto(Produto Produto) {
+	public boolean alterarProduto(Produto Produto) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_PRODUTO);) {
 			pst.setString(1, Produto.getNome());
@@ -92,21 +96,27 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 			pst.setLong(11, Produto.getId_produto());
 
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("Produto já cadastrado!");
 		}
 		
+		return false;
 	}
 	
-   public void excluirProduto(long id_produto) {
+   public boolean excluirProduto(long id_produto) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_PRODUTO);) {
 			pst.setLong(1, id_produto);
 			pst.execute();
+			
+			return true;
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statment " + e.toString());
+	    	new ShowAlert().erroAlert("Produto não pode ser excluído porque esta associado a uma ou várias Vendas!");
 		}
 		
+		return false;
 	}
 
 }

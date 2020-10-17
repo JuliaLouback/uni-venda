@@ -12,6 +12,7 @@ import main.entity.Categoria;
 import main.entity.Fornecedor;
 import main.util.ShowAlert;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
 
 public class ControllerViewExcluirCategoria {
@@ -41,17 +42,31 @@ public class ControllerViewExcluirCategoria {
     @FXML
     void btnExcluir(ActionEvent event) {
     	
-    	new DaoCategoria().excluirCategoria(Categorias.getId_categoria());
+    	if(new DaoCategoria().excluirCategoria(Categorias.getId_categoria())) {
     	
-    	new ShowAlert().sucessoAlert("Categoria excluido com sucesso!");
-    	
-		Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	    ControllerViewListaCategoria t = new ControllerViewListaCategoria();
-		t.start(stage);
+	    	new ShowAlert().sucessoAlert("Categoria excluido com sucesso!");
+	    	
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewListaCategoria t = new ControllerViewListaCategoria();
+			t.start(stage);
+    	}
     }
 
     public void setLabelText(Categoria Categoria){
 		 this.Categorias = Categoria;
 	     this.Nome.setText(Categoria.getNome());
+    }
+    
+    @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
     }
 }

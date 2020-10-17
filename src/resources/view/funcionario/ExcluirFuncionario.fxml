@@ -17,7 +17,10 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#VoltarPainel" text="Inicial" />
                </items></Menu>
-          <Menu mnemonicParsing="false" text="Sair" />
+          <Menu mnemonicParsing="false" text="Sair">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Sair" text="Logout" />
+               </items></Menu>
         </menus>
       </MenuBar>
       <Label layoutX="40.0" layoutY="64.0" text="Funcionário" textFill="#dc3545">
@@ -151,7 +154,7 @@
             <Font name="Arial" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="Estado" layoutX="690.0" layoutY="500.0" text="Email:">
+      <Label fx:id="Estado" layoutX="693.0" layoutY="498.0" text="Email:">
          <font>
             <Font size="27.0" />
          </font>

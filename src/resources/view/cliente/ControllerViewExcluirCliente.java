@@ -12,7 +12,9 @@ import main.entity.Cliente;
 import main.entity.Fornecedor;
 import main.util.ShowAlert;
 import resources.view.fornecedor.ControllerViewListaFornecedor;
+import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
+import resources.view.painel.ControllerViewPainelCaixa;
 
 public class ControllerViewExcluirCliente {
 
@@ -32,9 +34,18 @@ public class ControllerViewExcluirCliente {
     
     @FXML
     void VoltarPainel(ActionEvent event) {
-    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	     ControllerViewPainel t = new ControllerViewPainel();
-		 t.start(stage);
+    	String cargo = System.getProperty("Cargo");
+    	
+    	if(cargo.equals("Caixa")) {
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewPainelCaixa t = new ControllerViewPainelCaixa();
+			t.start(stage);
+		}
+		else {
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewPainel t = new ControllerViewPainel();
+			t.start(stage);
+		}
     }
 
     @FXML
@@ -47,13 +58,14 @@ public class ControllerViewExcluirCliente {
     @FXML
     void btnExcluir(ActionEvent event) {
     	
-    	new DaoCliente().excluirCliente(clientes.getCpf());
+    	if(new DaoCliente().excluirCliente(clientes.getCpf())) {
     	
-    	new ShowAlert().sucessoAlert("Cliente excluido com sucesso!");
-    	
-		Stage stage = (Stage) btnBack.getScene().getWindow(); 
-	    ControllerViewListaCliente t = new ControllerViewListaCliente();
-		t.start(stage);
+	    	new ShowAlert().sucessoAlert("Cliente excluido com sucesso!");
+	    	
+			Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		    ControllerViewListaCliente t = new ControllerViewListaCliente();
+			t.start(stage);
+    	}
     }
 
     public void setLabelText(Cliente cliente){
@@ -61,5 +73,18 @@ public class ControllerViewExcluirCliente {
 	     this.Nome.setText(cliente.getNome());
 	     this.Email.setText(cliente.getEmail());
 	     this.CPF.setText(cliente.getCpf());
+    }
+    
+    @FXML
+    void Sair(ActionEvent event) {
+		 System.clearProperty("Cpf");
+		 System.clearProperty("Nome");
+		 System.clearProperty("Cargo");
+	
+		 if(new ShowAlert().sucessoAlert("Tem certeza que deseja realizar o logout?")) {
+			 Stage stage = (Stage) btnBack.getScene().getWindow(); 
+		     ControllerViewLogin t = new ControllerViewLogin();
+			 t.start(stage);
+		 }
     }
 }

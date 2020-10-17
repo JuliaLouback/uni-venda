@@ -10,6 +10,7 @@ import main.entity.Categoria;
 import main.entity.Categoria;
 import main.entity.Fornecedor;
 import main.repository.CNXJDBC;
+import main.util.ShowAlert;
 
 public class DaoCategoria {
 
@@ -44,59 +45,65 @@ public class DaoCategoria {
 	}
 	
 	
-	 public Categoria listarCategoria(long id) {
+	public Categoria listarCategoria(long id) {
 			
-			Categoria Categoria = new Categoria();
-			String SQL_SELECIONA_CATEGORIA_ID = "SELECT * FROM Categoria WHERE Id_categoria = '"+id+"';";
+		Categoria Categoria = new Categoria();
+		String SQL_SELECIONA_CATEGORIA_ID = "SELECT * FROM Categoria WHERE Id_categoria = '"+id+"';";
 
-			try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_CATEGORIA_ID); ResultSet rs = pst.executeQuery();) {
-				while (rs.next()) {
-					Categoria.setId_categoria(rs.getInt("ID_CATEGORIA"));
-					Categoria.setNome(rs.getString("NOME"));
-				}
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_CATEGORIA_ID); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				Categoria.setId_categoria(rs.getInt("ID_CATEGORIA"));
+				Categoria.setNome(rs.getString("NOME"));
+			}
 
-			} catch (SQLException e) {
-				System.out.println("Erro ao executar o Statement" + e.toString());
-			} catch (Exception ex) {
-				System.out.println(ex.toString());
-			}
-			
-
-			return Categoria;
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
 		}
-	 public void inserirCategoria(Categoria Categoria) {
-			try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_CATEGORIA);) {
-				pst.setString(1, Categoria.getNome());
-				pst.executeUpdate();
-			} catch (SQLException e) {
-				System.out.println(e.getErrorCode());
-				System.out.println("Erro ao executar o Statment " + e.toString());
-			}
-		}
-		
-		
-		
-		public void alterarCategoria(Categoria Categoria) {
 			
-			try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_CATEGORIA);) {
-				pst.setString(1, Categoria.getNome());
-				pst.setInt(2, Categoria.getId_categoria());
-				
-				pst.execute();
-			} catch (SQLException e) {
-				System.out.println("Erro ao executar o Statment " + e.toString());
-			}
+		return Categoria;
+	}
+	 
+	public boolean inserirCategoria(Categoria Categoria) {
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_CATEGORIA);) {
+			pst.setString(1, Categoria.getNome());
+			pst.executeUpdate();
 			
+			return true;
+		} catch (SQLException e) {
+	    	new ShowAlert().erroAlert("Categoria já cadastrada!");
 		}
 		
-	   public void excluirCategoria(int id) {
+		return false;
+	}
 			
-			try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_CATEGORIA);) {
-				pst.setInt(1, id);
-				pst.execute();
-			} catch (SQLException e) {
-				System.out.println("Erro ao executar o Statment " + e.toString());
-			}
+	public boolean alterarCategoria(Categoria Categoria) {
 			
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_CATEGORIA);) {
+			pst.setString(1, Categoria.getNome());
+			pst.setInt(2, Categoria.getId_categoria());
+			pst.execute();
+			
+			return true;
+		} catch (SQLException e) {
+	    	new ShowAlert().erroAlert("Categoria já cadastrada!");
 		}
+		
+		return false;
+	}
+	
+	public boolean excluirCategoria(int id) {
+			
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_CATEGORIA);) {
+			pst.setInt(1, id);
+			pst.execute();
+			
+			return true;
+		} catch (SQLException e) {
+	    	new ShowAlert().erroAlert("Categoria não pode ser excluída porque esta associada a um ou vários Produtos!");
+		}
+		
+		return false;
+	}
 }

@@ -18,6 +18,8 @@ public class Funcionario {
 
 	private String Status;
 	
+	private String Senha;
+	
 	private long Id_endereco;
 
 	public String getCpf() {
@@ -82,6 +84,21 @@ public class Funcionario {
 
 	public void setId_endereco(long id_endereco) {
 		Id_endereco = id_endereco;
+	}
+
+	public String getSenha() {
+		return Senha;
+	}
+
+	public void setSenha(String senha) {
+		Senha = senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Funcionario [Cpf=" + Cpf + ", Email=" + Email + ", Nome=" + Nome + ", Cargo=" + Cargo
+				+ ", Data_nascimento=" + Data_nascimento + ", Salario=" + Salario + ", Status=" + Status + ", Senha="
+				+ Senha + ", Id_endereco=" + Id_endereco + "]";
 	}
 	
 	

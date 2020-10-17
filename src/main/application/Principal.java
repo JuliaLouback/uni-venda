@@ -13,10 +13,10 @@ public class Principal extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/painel/Painel.fxml"));
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/resources/view/login/Login.fxml"));
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Painel - Uni Venda");
+			primaryStage.setTitle("Login - Uni Venda");
 			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/resources/img/money.png"));
