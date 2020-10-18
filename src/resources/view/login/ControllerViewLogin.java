@@ -10,12 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.dao.DaoLogin;
 import main.entity.Funcionario;
 import main.util.Criptografia;
 import main.util.ShowAlert;
+import resources.view.funcionario.ControllerViewListaFuncionario;
 import resources.view.pagamento.ControllerViewListaPagamento;
 import resources.view.painel.ControllerViewPainel;
 import resources.view.painel.ControllerViewPainelCaixa;
@@ -98,4 +100,13 @@ public class ControllerViewLogin {
 		}
 		
 	}
+	
+	
+	@FXML
+    void btnAlterarSenha(MouseEvent event) {
+		Stage stage = (Stage) btnLogin.getScene().getWindow(); 
+	    ControllerViewAltSenha t = new ControllerViewAltSenha();
+		t.start(stage);
+	}
+
 }

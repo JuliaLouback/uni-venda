@@ -75,9 +75,26 @@ public class ControllerViewListaFuncionario implements Initializable{
 	
 	 @FXML
 	 void AddFuncionario(ActionEvent event) {
-		 Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	     ControllerViewFuncionario t = new ControllerViewFuncionario();
-		 t.start(stage);
+		 try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/Funcionario/CadastroFuncionario.fxml"));
+             Parent root = loader.load();
+
+             ControllerViewFuncionario controllerView = loader.getController();
+             controllerView.mostrarCampo();;
+     
+             Stage stage = new Stage();
+             stage.setScene(new Scene(root));
+             stage.setTitle("Adicionar Funcionário - Uni Venda");
+             stage.centerOnScreen();
+ 			stage.getIcons().add(new Image("/resources/img/money.png"));
+ 			stage.setResizable(false);
+             stage.show();
+             
+             Stage stages = (Stage) btnAdd.getScene().getWindow();
+             stages.close();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
 	 }
 
 	public void start(Stage primaryStage) {

@@ -124,7 +124,6 @@ public class ControllerViewExcluirFuncionario {
 
 	     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	     String dataFormatada = data.format(formatter);
-
 	     
 	     this.Data_nascimento.setText(dataFormatada);	
 	     this.Status.setText(funcionario.getStatus());

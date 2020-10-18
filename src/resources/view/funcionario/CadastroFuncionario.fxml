@@ -63,7 +63,7 @@
             <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="415.0" layoutY="390.0" text="Telefone Fixo">
+      <Label fx:id="TelefoneFLabel" layoutX="415.0" layoutY="390.0" text="Telefone Fixo">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
@@ -72,7 +72,7 @@
          <font>
             <Font name="Arial" size="20.0" />
          </font></TextField>
-      <Label layoutX="790.0" layoutY="390.0" text="Telefone Celular">
+      <Label fx:id="TelefoneCLabel" layoutX="790.0" layoutY="390.0" text="Telefone Celular">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
@@ -243,7 +243,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="390.0" text="Senha">
+      <Label fx:id="SenhaLabel" layoutX="40.0" layoutY="390.0" text="Senha">
          <font>
             <Font name="Arial" size="22.0" />
          </font>

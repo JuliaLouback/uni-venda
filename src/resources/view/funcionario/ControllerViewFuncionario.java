@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -42,6 +44,7 @@ import main.entity.FuncionarioTelefone;
 import main.entity.Telefone;
 import main.util.Criptografia;
 import main.util.MaskFieldUtil;
+import main.util.SendEmail;
 import main.util.ShowAlert;
 import resources.view.login.ControllerViewLogin;
 import resources.view.painel.ControllerViewPainel;
@@ -97,7 +100,16 @@ public class ControllerViewFuncionario implements Initializable{
 
 	    @FXML
 	    private Label labelChange;
+	    
+	    @FXML
+	    private Label TelefoneFLabel;
+	    
+	    @FXML
+	    private Label TelefoneCLabel;
 
+	    @FXML
+	    private Label SenhaLabel;
+	    
 	    @FXML
 	    private DatePicker Data_nascimento;
 
@@ -217,7 +229,12 @@ public class ControllerViewFuncionario implements Initializable{
 			funcionario.setData_nascimento(Data_nascimento.getValue());
 	    	funcionario.setStatus(Status.getValue().toString());
 			funcionario.setSalario(Float.parseFloat(Salario.getText()));
-			funcionario.setSenha(new Criptografia().CriptografiaSenha(Senha.getText()));
+			
+			LocalDate data = Data_nascimento.getValue();
+		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		    String dataFormatada = data.format(formatter);
+		     
+			funcionario.setSenha(new Criptografia().CriptografiaSenha(dataFormatada));
 
 			funcionario.setId_endereco(id);
 	    	
@@ -254,10 +271,13 @@ public class ControllerViewFuncionario implements Initializable{
 		    	}
 		    	
 		    	new ShowAlert().sucessoAlert("Funcionário adicionado com sucesso!"); 
-		    	
+		  
 		    	 Stage stage = (Stage) btnBack.getScene().getWindow(); 
 			     ControllerViewListaFuncionario t = new ControllerViewListaFuncionario();
 				 t.start(stage);
+				 
+				 new SendEmail().EnviarEmail(funcionario);
+			    	
 	    	}
 		}
 	
@@ -426,7 +446,20 @@ public class ControllerViewFuncionario implements Initializable{
         MaskFieldUtil.cpfField(this.Cpf);
 		Cargo.getItems().setAll("Gerente", "Caixa", "RH"); 
 		Status.getItems().setAll("Ativo", "Inativo"); 
-
+		
+	}
+	
+	public void mostrarCampo() {
+    	
+		this.Senha.setVisible(false);
+		this.SenhaLabel.setVisible(false);
+		TelefoneFLabel.setLayoutX(40);
+		Telefone_fixo.setPrefWidth(540);
+		Telefone_fixo.setLayoutX(40);
+		Telefone_celular.setPrefWidth(540);
+		Telefone_celular.setLayoutX(600);
+		TelefoneCLabel.setLayoutX(600);
+		
 	}
 	
 	public boolean validacaoCampos() {
@@ -458,6 +491,7 @@ public class ControllerViewFuncionario implements Initializable{
 		t.start(stage);
 		}
 	 }
+	 
 	 
 	 @FXML
      void Sair(ActionEvent event) {

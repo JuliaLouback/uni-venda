@@ -52,6 +52,11 @@
                         <Font name="Arial" size="20.0" />
                      </font>
                   </PasswordField>
+                  <Label layoutX="150.0" layoutY="450.0" lineSpacing="10.0" onMouseClicked="#btnAlterarSenha" text="Alterar Senha" textAlignment="CENTER" textFill="#6e7086">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </items>
