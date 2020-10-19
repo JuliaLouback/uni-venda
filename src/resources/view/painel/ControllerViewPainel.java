@@ -23,6 +23,8 @@ import resources.view.funcionario.ControllerViewListaFuncionario;
 import resources.view.login.ControllerViewLogin;
 import resources.view.pagamento.ControllerViewListaPagamento;
 import resources.view.produto.ControllerViewListaProduto;
+import resources.view.venda.ControllerViewListaVenda;
+import resources.view.venda.ControllerViewVenda;
 
 public class ControllerViewPainel implements Initializable{
 
@@ -43,6 +45,9 @@ public class ControllerViewPainel implements Initializable{
     
     @FXML
     private Button btnPagamento;
+    
+    @FXML
+    private Button btnVenda;
 
     @FXML
     private Label NomeFunc;
@@ -104,6 +109,14 @@ public class ControllerViewPainel implements Initializable{
 		t.start(stage);
     }
 
+	@FXML
+    void btnIrVenda(ActionEvent event) {
+		Stage stage = (Stage) btnVenda.getScene().getWindow(); 
+	    ControllerViewListaVenda t = new ControllerViewListaVenda();
+		t.start(stage);
+    }
+
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		NomeFunc.setText(System.getProperty("Nome"));

@@ -34,7 +34,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [Cpf=" + Cpf + ", Email=" + Email + ", Nome=" + Nome + "]";
+		return Nome;
 	}
 	
 	

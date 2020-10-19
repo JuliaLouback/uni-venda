@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.dao.DaoLogin;
+import main.dao.DaoVenda;
 import main.entity.Funcionario;
 import main.util.Criptografia;
 import main.util.ShowAlert;
@@ -81,6 +82,8 @@ public class ControllerViewLogin {
 			
 			return false;
 		}
+		
+		new DaoVenda().listarVenda();
 		
 		return true;
 	}

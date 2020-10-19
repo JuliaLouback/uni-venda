@@ -24,6 +24,22 @@ public class ShowAlert {
 		alert.showAndWait();
 	}
 	
+	public void validacaoVenda() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Atenção");
+		alert.setHeaderText(null);
+		alert.setContentText("Selecione o Cliente e/ou adicione produtos a lista!");
+		alert.showAndWait();
+	}
+	
+	public void validacaoVendaForma() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Atenção");
+		alert.setHeaderText(null);
+		alert.setContentText("Selecione as formas de pagamento e/ou valor inserido menor que o valor total!");
+		alert.showAndWait();
+	}
+	
 	public boolean sucessoAlert(String mensagem) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Sucesso");

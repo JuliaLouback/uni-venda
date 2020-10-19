@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.view.venda.ControllerViewExcluirVenda">
+   <children>
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1282.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../../css/style.css">
+        <menus>
+          <Menu mnemonicParsing="false" text="Uni Venda">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#VoltarPainel" text="Inicial" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Sair">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Sair" text="Logout" />
+               </items></Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="40.0" layoutY="64.0" text="Venda" textFill="#dc3545">
+         <font>
+            <Font name="Arial Bold" size="42.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="116.0" text="Excluir">
+         <font>
+            <Font name="Arial" size="33.0" />
+         </font>
+      </Label>
+      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="1190.0" />
+      <Label layoutX="40.0" layoutY="190.0" text="Nome Cliente:" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="861.0" layoutY="824.0" mnemonicParsing="false" onAction="#btnExcluir" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Excluir" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBack" layoutX="1009.0" layoutY="824.0" mnemonicParsing="false" onAction="#btnBack" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #dc3545;" text="Voltar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Button>
+      <Label layoutX="660.0" layoutY="190.0" text="CPF Cliente:" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="240.0" text="Nome Funcionário:" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="660.0" layoutY="240.0" text="CPF Funcionário:" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="290.0" text="Data da Venda:" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="660.0" layoutY="290.0" text="Valor Total:" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="350.0" text="Produtos">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="590.0" text="Formas de Pagamento">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabelaProduto" layoutX="40.0" layoutY="420.0" prefHeight="150.0" prefWidth="1100.0" stylesheets="@../../css/style.css">
+        <columns>
+          <TableColumn fx:id="TProduto" prefWidth="404.8000373840332" text="Produto" />
+          <TableColumn fx:id="TQuantidade" prefWidth="409.5999755859375" text="Quantidade" />
+            <TableColumn fx:id="TValot" prefWidth="284.00006103515625" text="Valor" />
+        </columns>
+      </TableView>
+      <TableView fx:id="TabelaPag" layoutX="40.0" layoutY="650.0" prefHeight="150.0" prefWidth="1100.0" stylesheets="@../../css/style.css">
+        <columns>
+          <TableColumn fx:id="TForma" prefWidth="414.39997482299805" text="Forma de Pagamento" />
+          <TableColumn fx:id="TValorP" prefWidth="525.6000061035156" text="Valor" />
+        </columns>
+      </TableView>
+      <Label fx:id="Nome_Cliente" layoutX="255.0" layoutY="190.0" text="Nome Cliente:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="Nome_Funcionario" layoutX="319.0" layoutY="240.0" text="Nome Cliente:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="Data_Venda" layoutX="263.0" layoutY="290.0" text="Nome Cliente:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="Cpf_Cliente" layoutX="845.0" layoutY="190.0" text="Nome Cliente:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="Cpf_Funcionario" layoutX="909.0" layoutY="240.0" text="Nome Cliente:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="Valor_total" layoutX="845.0" layoutY="290.0" text="Nome Cliente:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

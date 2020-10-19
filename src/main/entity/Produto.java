@@ -111,4 +111,10 @@ public class Produto {
 	public void setEstoque_atual(int estoque_atual) {
 		Estoque_atual = estoque_atual;
 	}
+
+	@Override
+	public String toString() {
+		return Nome;
+	}
+	
 }

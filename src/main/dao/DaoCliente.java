@@ -60,6 +60,30 @@ public class DaoCliente {
 		return listaClientes;
 	}
 	
+	public String listarUmCliente(String Cpf) {
+	
+		String SQL_SELECIONA_CLIENTES = "SELECT * FROM Cliente WHERE Cpf = '"+Cpf+"'";
+
+		Cliente cliente = null;
+		
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_CLIENTES); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				cliente = new Cliente();
+				cliente.setCpf(rs.getString("CPF"));
+				cliente.setNome(rs.getString("NOME"));
+				cliente.setEmail(rs.getString("EMAIL"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());			
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		
+
+		return cliente.getNome();
+	}
+	
 	public boolean alterarCliente(Cliente cliente) {
 		
 		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_CLIENTE);) {

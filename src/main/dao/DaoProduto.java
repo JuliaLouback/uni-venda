@@ -22,6 +22,8 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 	
 	private final String SQL_EXCLUI_PRODUTO = "DELETE FROM Produto WHERE Id_produto = ?;";
 		
+	private final String SQL_SELECIONA_PRODUTO_COMBO = "SELECT * FROM Produto WHERE Estoque_atual > 0";
+	
 	private PreparedStatement pst = null;
 
 	public boolean inserirProduto(Produto Produto) {
@@ -119,4 +121,68 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 		return false;
 	}
 
+   public ArrayList<Produto> listarProdutoCombo() {
+		ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
+
+		Produto Produto;
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_PRODUTO_COMBO); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				Produto = new Produto();
+				Produto.setId_produto(rs.getInt("ID_PRODUTO"));
+				Produto.setNome(rs.getString("NOME"));
+				Produto.setValor_unitario(rs.getFloat("VALOR_UNITARIO"));
+				Produto.setUnidade_medida(rs.getString("UNIDADE_MEDIDA"));
+				Produto.setEstoque_minimo(rs.getInt("ESTOQUE_MINIMO"));
+				Produto.setEstoque_maximo(rs.getInt("ESTOQUE_MAXIMO"));
+				Produto.setEstoque_atual(rs.getInt("ESTOQUE_ATUAL"));
+				Produto.setPeso_bruto(rs.getFloat("PESO_BRUTO"));
+				Produto.setPeso_liquido(rs.getFloat("PESO_LIQUIDO"));
+				Produto.setId_categoria(rs.getInt("CATEGORIA_ID_CATEGORIA"));
+				Produto.setFornecedor_Cnpj(rs.getString("FORNECEDOR_CNPJ"));
+				
+				listaProdutos.add(Produto);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		
+
+		return listaProdutos;
+	}
+   
+   public Produto listarUmProduto(int Id_produto) {
+
+		String SQL_SELECIONA_PRODUTO_COD = "SELECT * FROM Produto WHERE Id_produto = '"+Id_produto+"'";
+
+		Produto Produto = null;
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_PRODUTO_COD); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				Produto = new Produto();
+				Produto.setId_produto(rs.getInt("ID_PRODUTO"));
+				Produto.setNome(rs.getString("NOME"));
+				Produto.setValor_unitario(rs.getFloat("VALOR_UNITARIO"));
+				Produto.setUnidade_medida(rs.getString("UNIDADE_MEDIDA"));
+				Produto.setEstoque_minimo(rs.getInt("ESTOQUE_MINIMO"));
+				Produto.setEstoque_maximo(rs.getInt("ESTOQUE_MAXIMO"));
+				Produto.setEstoque_atual(rs.getInt("ESTOQUE_ATUAL"));
+				Produto.setPeso_bruto(rs.getFloat("PESO_BRUTO"));
+				Produto.setPeso_liquido(rs.getFloat("PESO_LIQUIDO"));
+				Produto.setId_categoria(rs.getInt("CATEGORIA_ID_CATEGORIA"));
+				Produto.setFornecedor_Cnpj(rs.getString("FORNECEDOR_CNPJ"));
+				
+				
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		
+
+		return Produto;
+	}
 }

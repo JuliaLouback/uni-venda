@@ -42,7 +42,6 @@ public class SendEmail {
 	        }
 	    });
 	
-	    /** Ativa Debug para sessão */
 	    session.setDebug(true);
 		
 	    try {

@@ -21,7 +21,7 @@
                   <Image url="@../../img/cart.png" />
                </image>
             </ImageView>
-            <Button layoutX="28.0" layoutY="201.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Vendas" textFill="#dc3545">
+            <Button fx:id="btnVenda" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrVenda" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Vendas" textFill="#dc3545">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>

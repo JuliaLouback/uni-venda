@@ -69,9 +69,36 @@ public class DaoFuncionario {
 		} catch (Exception ex) {
 			System.out.println(ex.toString());
 		}
+		return listaFuncionarios;
+	}
+		
+		public String listarUmFuncionario(String Cpf) {
+		 
+			String SQL_SELECIONA_FUNCIONARIOS = "SELECT * FROM Funcionario WHERE Cpf = '"+Cpf+"'";
+
+			Funcionario funcionario = null;
+			try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_FUNCIONARIOS); ResultSet rs = pst.executeQuery();) {
+				while (rs.next()) {
+					funcionario = new Funcionario();
+					funcionario.setCpf(rs.getString("CPF"));
+					funcionario.setNome(rs.getString("NOME"));
+					funcionario.setEmail(rs.getString("EMAIL"));
+					funcionario.setCargo(rs.getString("CARGO"));
+					funcionario.setData_nascimento(rs.getDate("DATA_NASCIMENTO").toLocalDate());
+					funcionario.setStatus(rs.getString("STATUS"));
+					funcionario.setSalario(rs.getFloat("SALARIO"));
+					funcionario.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
+					funcionario.setSenha(rs.getString("SENHA"));
+				}
+
+			} catch (SQLException e) {
+				System.out.println("Erro ao executar o Statement" + e.toString());
+			} catch (Exception ex) {
+				System.out.println(ex.toString());
+			}
 		
 
-		return listaFuncionarios;
+		return funcionario.getNome();
 	}
 	
 	public boolean alterarFuncionario(Funcionario funcionario) {
