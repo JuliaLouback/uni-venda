@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -32,12 +34,12 @@
          </font>
       </Label>
       <Separator layoutX="40.0" layoutY="127.0" prefHeight="0.0" prefWidth="1190.0" />
-      <Button fx:id="btnAdd" layoutX="1095.0" layoutY="160.0" mnemonicParsing="false" onAction="#VoltarVenda" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #dc3545;" text="Voltar" textFill="WHITE">
+      <Button fx:id="btnAdd" layoutX="1095.0" layoutY="270.0" mnemonicParsing="false" onAction="#VoltarVenda" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #dc3545;" text="Voltar" textFill="WHITE">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
       </Button>
-      <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="580.0" prefWidth="1190.0" stylesheets="@../../css/style.css">
+      <TableView fx:id="tabela" layoutX="40.0" layoutY="348.0" prefHeight="480.0" prefWidth="1190.0" stylesheets="@../../css/style.css">
         <columns>
           <TableColumn fx:id="Cliente" minWidth="200.0" prefWidth="242.40000534057617" text="Cliente" />
           <TableColumn fx:id="Funcionario" minWidth="120.0" prefWidth="208.0" text="Funcionário" />
@@ -45,5 +47,39 @@
             <TableColumn fx:id="Valor" prefWidth="251.2000732421875" text="Valor" />
         </columns>
       </TableView>
+      <ComboBox fx:id="Funcionario_combo" layoutX="40.0" layoutY="210.0" prefHeight="40.0" prefWidth="280.0" />
+      <Label layoutX="40.0" layoutY="160.0" text="Funcionário">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnPesquisa" layoutX="950.0" layoutY="270.0" mnemonicParsing="false" onAction="#Pesquisa" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Pesquisar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="Cliente_combo" layoutX="345.0" layoutY="210.0" prefHeight="40.0" prefWidth="280.0" />
+      <Label layoutX="345.0" layoutY="160.0" prefWidth="78.0" text="Cliente">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="Data_inicio" layoutX="645.0" layoutY="210.0" prefHeight="40.0" prefWidth="280.0" />
+      <Label layoutX="645.0" layoutY="160.0" prefHeight="30.0" prefWidth="135.0" text="Data Início">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="Data_final" layoutX="945.0" layoutY="210.0" prefHeight="40.0" prefWidth="280.0" />
+      <Label layoutX="945.0" layoutY="160.0" prefHeight="30.0" prefWidth="135.0" text="Data Final">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnLimpar" layoutX="40.0" layoutY="270.0" mnemonicParsing="false" onAction="#Limpar" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #757575;" text="Limpar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

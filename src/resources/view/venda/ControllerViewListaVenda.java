@@ -163,6 +163,12 @@ public class ControllerViewListaVenda implements Initializable {
     	else {
 	    	btnCaixa.setText("Abrir Caixa");
     	}
+	    
+	    String cargo = System.getProperty("Cargo");
+    	
+  	    if(!cargo.equals("Gerente")) {
+  	    	btnPesquisa.setVisible(false);
+  	    }
 	}
 	
 	public void start(Stage primaryStage) {

@@ -115,6 +115,7 @@ public class DaoVenda {
 				Venda.setFuncionario_Cpf(rs.getString("FUNCIONARIO_CPF"));
 				String funcionario = new DaoFuncionario().listarUmFuncionario(rs.getString("FUNCIONARIO_CPF"));
 				Venda.setNome_Funcionario(funcionario);
+				Venda.setData_Local(rs.getDate("DATA_VENDA").toLocalDate());
 				
 				Venda.setValor_total(rs.getFloat("VALOR_TOTAL"));
 				

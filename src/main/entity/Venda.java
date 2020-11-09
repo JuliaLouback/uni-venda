@@ -29,6 +29,16 @@ public class Venda {
 
 	private int Id_venda;
 	
+	private LocalDate Data_Local;
+	
+	public LocalDate getData_Local() {
+		return Data_Local;
+	}
+
+	public void setData_Local(LocalDate data_Local) {
+		Data_Local = data_Local;
+	}
+
 	public int getId_venda() {
 		return Id_venda;
 	}
