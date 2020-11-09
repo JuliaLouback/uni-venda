@@ -134,7 +134,7 @@
                   <Image url="@../../img/time.png" />
                </image>
             </ImageView>
-            <Button layoutX="28.0" layoutY="201.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Caixas" textFill="#dc3545">
+            <Button fx:id="btnCaixa" layoutX="28.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnIrCaixa" prefHeight="66.0" prefWidth="216.0" style="-fx-border-color: #DC3545; -fx-background-color: #ffffff;" text="Caixas" textFill="#dc3545">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>

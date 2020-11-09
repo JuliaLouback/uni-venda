@@ -31,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.util.ShowAlert;
+import main.dao.DaoCaixa;
 import main.dao.DaoCategoria;
 import main.dao.DaoCliente;
 import main.dao.DaoFornecedor;
@@ -158,12 +159,24 @@ public class ControllerViewVendaPagamento implements Initializable {
     		for(Venda_Produto vendaP : listaVendaP) {
     			vendaP.setVenda_Id_Venda(id);
     			new DaoVenda().inserirVendaProduto(vendaP);
+    			
+    			Produto produto = vendaP.getProduto();
+    			produto.setEstoque_atual(produto.getEstoque_atual() - vendaP.getQuantidade());
+    			new DaoProduto().alterarProdutoQuantidade(produto);
         	}
     		
     		for(Venda_Pagamento vendaF : listaVendaF) {
         		vendaF.setVenda_Id_Venda(id);
         		new DaoVenda().inserirVendaPagamento(vendaF);
         	}
+    		
+    		Caixa caixa = new Caixa();
+    		Caixa caixaUm = new DaoCaixa().listarUmCaixaCpf(System.getProperty("Cpf"));
+    		
+	    	caixa.setValor_final(caixaUm.getValor_final() + ValorTotal);
+	    	caixa.setFuncionario_Cpf(System.getProperty("Cpf"));
+	    	
+	    	new DaoCaixa().alterarCaixa(caixa);
     		
     		new ShowAlert().informationAlert("Venda efetuada com sucesso!");
         	

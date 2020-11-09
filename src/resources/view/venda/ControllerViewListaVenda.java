@@ -2,6 +2,7 @@ package resources.view.venda;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -22,8 +23,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import main.dao.DaoCaixa;
 import main.dao.DaoVenda;
 import main.dao.DaoVenda;
+import main.entity.Caixa;
 import main.entity.Venda;
 import main.entity.Venda;
 import main.util.ShowAlert;
@@ -36,6 +39,12 @@ public class ControllerViewListaVenda implements Initializable {
 
     @FXML
     private Button btnAdd;
+    
+    @FXML
+    private Button btnCaixa;
+    
+    @FXML
+    private Button btnPesquisa;
 
     @FXML
     private TableView<Venda> tabela;
@@ -58,9 +67,53 @@ public class ControllerViewListaVenda implements Initializable {
     
     @FXML
     void AddVenda(ActionEvent event) {
-    	Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	    ControllerViewVenda t = new ControllerViewVenda();
+    	
+    	if(new DaoCaixa().listarUmCaixa(System.getProperty("Cpf"))) {
+    		Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+		    ControllerViewVenda t = new ControllerViewVenda();
+			t.start(stage);
+    	} else {
+    		new ShowAlert().erroAlert("Para realizar vendas é necessário abrir caixa!");
+    	}
+    }
+    
+    @FXML
+    void AddPesquisa(ActionEvent event) {
+    
+		Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+	    ControllerViewListaPesquisa t = new ControllerViewListaPesquisa();
 		t.start(stage);
+    }
+    
+    
+    
+    @FXML
+    void AddCaixa(ActionEvent event) {
+    	
+    	if(new DaoCaixa().listarUmCaixa(System.getProperty("Cpf"))) {
+    		if(new ShowAlert().confirmationAlert("Tem certeza que deseja fechar o Caixa? É possível abrir apenas um caixa por dia.")) {
+	    		Caixa caixa = new Caixa();
+		    	caixa.setData_fechamento(LocalDateTime.now());
+		    	caixa.setFuncionario_Cpf(System.getProperty("Cpf"));
+		    	
+		    	new DaoCaixa().fecharCaixa(caixa);
+	    		
+	    		btnCaixa.setText("Abrir Caixa");
+    		}
+    	}
+    	else {
+    		if(!new DaoCaixa().listarUmCaixaData(System.getProperty("Cpf"))) {
+	    		Caixa caixa = new Caixa();
+		    	caixa.setData_abertura(LocalDateTime.now());
+		    	caixa.setFuncionario_Cpf(System.getProperty("Cpf"));
+		    	
+		    	new DaoCaixa().inserirCaixa(caixa);
+		    	
+		    	btnCaixa.setText("Fechar Caixa");
+    		} else {
+        		new ShowAlert().erroAlert("Só é possível abrir um caixa por dia!");
+    		}
+    	}
     }
 
     @FXML
@@ -103,6 +156,13 @@ public class ControllerViewListaVenda implements Initializable {
 	    tabela.setItems(lista);
 	    tabela.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	    addButtonExcluir();
+	    
+	    if(new DaoCaixa().listarUmCaixa(System.getProperty("Cpf"))) {
+    		btnCaixa.setText("Fechar Caixa");
+    	}
+    	else {
+	    	btnCaixa.setText("Abrir Caixa");
+    	}
 	}
 	
 	public void start(Stage primaryStage) {

@@ -72,4 +72,20 @@ public class ShowAlert {
 		alert.showAndWait();
 	}
 	
+	public boolean confirmationAlert(String mensagem) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Sucesso");
+		alert.setHeaderText(null);
+		alert.setContentText(mensagem);
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		ButtonType button = result.orElse(ButtonType.CANCEL);
+
+		if (button == ButtonType.OK) {
+		    return true;
+		} 
+		
+		return false;
+	}
+	
 }

@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.util.ShowAlert;
+import resources.view.caixa.ControllerViewListaCaixa;
 import resources.view.categoria.ControllerViewListaCategoria;
 import resources.view.cliente.ControllerViewCliente;
 import resources.view.cliente.ControllerViewListaCliente;
@@ -48,6 +49,9 @@ public class ControllerViewPainel implements Initializable{
     
     @FXML
     private Button btnVenda;
+
+    @FXML
+    private Button btnCaixa;
 
     @FXML
     private Label NomeFunc;
@@ -113,6 +117,13 @@ public class ControllerViewPainel implements Initializable{
     void btnIrVenda(ActionEvent event) {
 		Stage stage = (Stage) btnVenda.getScene().getWindow(); 
 	    ControllerViewListaVenda t = new ControllerViewListaVenda();
+		t.start(stage);
+    }
+
+	@FXML
+    void btnIrCaixa(ActionEvent event) {
+		Stage stage = (Stage) btnCaixa.getScene().getWindow(); 
+	    ControllerViewListaCaixa t = new ControllerViewListaCaixa();
 		t.start(stage);
     }
 

@@ -24,6 +24,8 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 		
 	private final String SQL_SELECIONA_PRODUTO_COMBO = "SELECT * FROM Produto WHERE Estoque_atual > 0";
 	
+	private final String SQL_ALTERA_PRODUTO_QUANTIDADE = "UPDATE Produto SET Estoque_atual =? WHERE Id_produto = ?;";
+	
 	private PreparedStatement pst = null;
 
 	public boolean inserirProduto(Produto Produto) {
@@ -96,6 +98,22 @@ private final String SQL_INSERE_PRODUTO = "INSERT INTO Produto (Id_produto,Nome,
 			pst.setLong(9, Produto.getId_categoria());
 			pst.setInt(10, Produto.getEstoque_atual());
 			pst.setLong(11, Produto.getId_produto());
+
+			pst.execute();
+			
+			return true;
+		} catch (SQLException e) {
+	    	new ShowAlert().erroAlert("Produto já cadastrado!");
+		}
+		
+		return false;
+	}
+	
+	public boolean alterarProdutoQuantidade(Produto Produto) {
+		
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_PRODUTO_QUANTIDADE);) {
+			pst.setInt(1, Produto.getEstoque_atual());
+			pst.setLong(2, Produto.getId_produto());
 
 			pst.execute();
 			
