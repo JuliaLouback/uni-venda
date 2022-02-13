@@ -25,3 +25,10 @@ Projeto desenvolvido no 4º semestre do curso de Engenharia de Software
 
 - Java
 
+
+## 👩‍💻 Autor
+
+- [Julia Louback Ribeiro](https://github.com/JuliaLouback)
+
+
+
